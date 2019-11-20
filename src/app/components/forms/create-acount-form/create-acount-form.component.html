@@ -1,0 +1,11 @@
+<form #createAccountForm="ngForm" (ngSubmit)="onSubmit()">
+  <input type="e-mail" required [(ngModel)]="user.email" name="email" />
+  <input type="password" required [(ngModel)]="user.password" name="password" />
+  <input
+    type="text"
+    name="company-name"
+    required
+    [(ngModel)]="user.companyName"
+  />
+  <input type="submit" [disabled]="!createAccountForm.form.valid" />
+</form>

@@ -1,0 +1,5 @@
+<form #heroForm="ngForm" (ngSubmit)="onSubmit()">
+  <input type="e-mail" required [(ngModel)]="user.email" name="email" />
+  <input type="password" required [(ngModel)]="user.password" name="password" />
+  <input type="submit" [disabled]="!heroForm.form.valid" />
+</form>

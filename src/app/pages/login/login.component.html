@@ -1,13 +1,13 @@
 <section class="m-top-8">
   <button (click)="googleSignup()">Signup with google</button>
-  <form #heroForm="ngForm" (ngSubmit)="onSubmit()">
-    <input type="e-mail" required [(ngModel)]="user.email" name="email" />
-    <input
-      type="password"
-      required
-      [(ngModel)]="user.password"
-      name="password"
-    />
-    <input type="submit" [disabled]="!heroForm.form.valid" />
-  </form>
+  <div *ngIf="loginMode; else createAccountContainer">
+    <app-login-form (loginUser)="onLoginUser($event)"></app-login-form>
+    <button (click)="toggleLogingMode()">Create account</button>
+  </div>
+  <ng-template #createAccountContainer>
+    <app-create-acount-form
+      (createUser)="onCreateUser($event)"
+    ></app-create-acount-form>
+    <button (click)="toggleLogingMode()">Login</button>
+  </ng-template>
 </section>

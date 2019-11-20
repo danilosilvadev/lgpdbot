@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import * as firebase from "firebase/app";
-import { Observable } from "rxjs";
-import { SignupService } from "../../services";
+import { AuthService } from "../../services";
 
 @Component({
   selector: "app-login",
@@ -9,12 +7,20 @@ import { SignupService } from "../../services";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent implements OnInit {
-  user: Object = {};
+  loginMode = true;
 
-  constructor(private signUp: SignupService) {}
+  constructor(private auth: AuthService) {}
 
-  onSubmit() {
-    this.signUp.registerUser(this.user);
+  onCreateUser(user) {
+    this.auth.registerUser(user);
+  }
+
+  onLoginUser(user) {
+    this.auth.loginUser(user);
+  }
+
+  toggleLogingMode() {
+    this.loginMode = !this.loginMode;
   }
 
   ngOnInit() {}
