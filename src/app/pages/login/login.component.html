@@ -1,4 +1,4 @@
-<section class="m-top-8">
+<section class="m-top-2">
   <button (click)="googleSignup()">Signup with google</button>
   <div *ngIf="loginMode; else createAccountContainer">
     <app-login-form (loginUser)="onLoginUser($event)"></app-login-form>

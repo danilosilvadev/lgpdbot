@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 interface User {
   email: string;
   password: string;
-  companyName: string;
+  name: string;
 }
 
 @Component({
@@ -15,7 +15,7 @@ export class CreateAcountFormComponent implements OnInit {
   user: User = {
     email: "",
     password: "",
-    companyName: ""
+    name: ""
   };
   @Output() createUser = new EventEmitter();
 

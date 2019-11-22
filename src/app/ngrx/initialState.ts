@@ -1,4 +1,12 @@
 export const initialState = {
   message: "holla mundo",
-  loading: false
+  loading: false,
+  user: {
+    status: {
+      name: "",
+      email: "",
+      isVerified: "",
+      userId: ""
+    }
+  }
 };

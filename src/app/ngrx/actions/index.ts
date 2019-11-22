@@ -3,10 +3,12 @@ import {
   changeMessageToSpanish,
   changeMessageToEnglish
 } from "./message.action";
+import { SetUserStatus } from "./user.action";
 
 export {
   StartLoading,
   StopLoading,
   changeMessageToSpanish,
-  changeMessageToEnglish
+  changeMessageToEnglish,
+  SetUserStatus
 };

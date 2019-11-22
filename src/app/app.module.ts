@@ -6,7 +6,7 @@ import { rootReducer } from "./ngrx/root.reducer";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { SignupService, LoginService, AuthService } from "./services";
+import { AuthService } from "./services";
 import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -17,6 +17,7 @@ import { LoginComponent } from "./pages/login/login.component";
 import { LoginFormComponent } from "./components/forms/login-form/login-form.component";
 import { CreateAcountFormComponent } from "./components/forms/create-acount-form/create-acount-form.component";
 import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
+import { DomainsComponent } from './pages/domains/domains.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
     DashboardComponent,
     LoginComponent,
     LoginFormComponent,
-    CreateAcountFormComponent
+    CreateAcountFormComponent,
+    DomainsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +44,6 @@ import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
     AngularFireModule,
     AngularFireAuth,
     AngularFireAuthGuard,
-    LoginService,
-    SignupService,
     AuthService,
     AngularFirestore
   ],
