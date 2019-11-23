@@ -40,6 +40,7 @@ export class UserStatusService {
           email: doc.data().email,
           isVerified: doc.data().isVerified
         }));
+        this.store.dispatch(new SetUserStatus(userStatus[0]));
         return userStatus[0];
       })
     );

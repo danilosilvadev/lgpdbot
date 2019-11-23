@@ -1,2 +1,6 @@
 <p>dashboard works!</p>
 <button (click)="logoutUser()">Logout</button>
+<div>{{ userStatusObservable | async | json }}</div>
+<button *ngIf="!(userStatusObservable | async | json | depth: 'isVerified')">
+  Re-envie o e-mail de verificação.
+</button>

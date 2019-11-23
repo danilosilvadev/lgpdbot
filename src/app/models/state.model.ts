@@ -4,6 +4,6 @@ export interface StateModel {
   message: string;
   loading: boolean;
   user: {
-    status: any;
+    status: UserStatus;
   };
 }

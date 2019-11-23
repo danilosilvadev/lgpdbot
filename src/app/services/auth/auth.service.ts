@@ -65,7 +65,7 @@ export class AuthService {
       user
         .updateProfile({ displayName: name })
         .then(() => {
-          var currentUser = this.afAuth.auth.currentUser;
+          const currentUser = this.afAuth.auth.currentUser;
           currentUser
             .sendEmailVerification()
             .then(() => {

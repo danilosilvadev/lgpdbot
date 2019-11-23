@@ -9,7 +9,9 @@ export function userReducer(state = initialState, action: UserActions) {
         ...state,
         user: {
           ...state.user,
-          status: { ...action.payload }
+          status: {
+            ...action.payload
+          }
         }
       };
     default:

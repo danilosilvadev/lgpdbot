@@ -18,6 +18,8 @@ import { LoginFormComponent } from "./components/forms/login-form/login-form.com
 import { CreateAcountFormComponent } from "./components/forms/create-acount-form/create-acount-form.component";
 import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
 import { DomainsComponent } from './pages/domains/domains.component';
+import { AsyncDepthPipe } from './utils/pipes/async-depth.pipe';
+import { DepthPipe } from './utils/pipes/depth.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { DomainsComponent } from './pages/domains/domains.component';
     LoginComponent,
     LoginFormComponent,
     CreateAcountFormComponent,
-    DomainsComponent
+    DomainsComponent,
+    AsyncDepthPipe,
+    DepthPipe
   ],
   imports: [
     BrowserModule,

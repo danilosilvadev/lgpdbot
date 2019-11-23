@@ -5,7 +5,7 @@ export const initialState = {
     status: {
       name: "",
       email: "",
-      isVerified: "",
+      isVerified: false,
       userId: ""
     }
   }

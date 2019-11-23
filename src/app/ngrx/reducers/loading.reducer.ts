@@ -7,7 +7,7 @@ export function loadingReducer(state = initialState, action: LoadingActions) {
     case START_LOADING:
       return { ...state, loading: true };
     case STOP_LOADING:
-      return { ...state, loading: false };
+      return { ...state, loading: true };
     default:
       return state;
   }
