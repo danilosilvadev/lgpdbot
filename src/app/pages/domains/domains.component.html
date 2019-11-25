@@ -1,1 +1,29 @@
-<p>domains works!</p>
+<form
+    #createDomainsForm="ngForm"
+    (ngSubmit)="onSubmit(createDomainsForm)"
+>
+    <div>
+        <label for='domainName'>Nome</label>
+        <input 
+            type='text'
+            name='name'
+            id='domainName'
+            required
+            [(ngModel)]="domain.name"
+        />
+    </div>
+    <div>
+        <label for='domainUrl'>Endereço</label>
+        <input 
+            type='text'
+            name='url'
+            id='domainUrl'
+            required
+            [(ngModel)]="domain.url"
+        />
+    </div>
+    <div>
+        <input type='submit' [disabled]="!createDomainsForm.form.valid" />
+    </div>
+    
+</form>
