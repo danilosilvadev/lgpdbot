@@ -7,13 +7,11 @@ import {
   redirectUnauthorizedTo,
   AngularFireAuthGuard
 } from "@angular/fire/auth-guard";
+import { DomainsComponent } from './pages/domains/domains.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(["login"]);
-const redirectLoggedInToDashboard = () => {
-  // Catch value from indexDB and put at here
-  // const userId = new AngularFireAuth().auth.currentUser.uid
-  return redirectLoggedInTo(["user/:user_id/dashboard"]);
-};
+
+const redirectLoggedInToDashboard = () => redirectLoggedInTo([`/dashboard`]);
 
 const routes: Routes = [
   {
@@ -23,14 +21,14 @@ const routes: Routes = [
     data: { authGuardPipe: redirectLoggedInToDashboard }
   },
   {
-    path: "user/:user_id/dashboard",
+    path: "dashboard",
     component: DashboardComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: "user/:user_id/domains",
-    component: DashboardComponent,
+    path: "domains",
+    component: DomainsComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   }
