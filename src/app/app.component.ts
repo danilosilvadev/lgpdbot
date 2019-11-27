@@ -30,9 +30,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit() {
-    this.userStatusService.fetchUserStatus().subscribe(userStatus => {
-      this.userStatus = userStatus;
-    });  
+    this.userStatusService.fetchUserStatus().then(obs => {
+      obs.subscribe(userStatus => {
+        this.userStatus = userStatus;
+        console.log(userStatus, 'aqui veio?')
+      })
+    });
   }
   spanishMessage() {
     this.store.dispatch(new changeMessageToSpanish());

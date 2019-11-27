@@ -42,7 +42,7 @@ export class AuthService {
   onSuccessLogin() {
     const userStatus = this.userStatusMiddleware(this.afAuth.auth.currentUser);
     this.store.dispatch(new SetUserStatus(userStatus));
-    this.router.navigate([`user/${userStatus.userId}/dashboard`]);
+    this.router.navigate([`/dashboard`]);
   }
 
   registerUser(authData) {
@@ -71,7 +71,8 @@ export class AuthService {
             .then(() => {
               const userStatus = this.userStatusMiddleware(currentUser);
               this.store.dispatch(new SetUserStatus(userStatus));
-              this.router.navigate([`user/${userStatus.userId}/dashboard`]);
+              // Aqui SATUR N TEM COMO ERRAR
+              this.router.navigate([`/dashboard`]);
             })
             .catch(err => {
               console.error(err);
