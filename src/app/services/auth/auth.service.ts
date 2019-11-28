@@ -84,6 +84,11 @@ export class AuthService {
     }
   }
 
+  sendEmailVerification() {
+    const currentUser = this.afAuth.auth.currentUser;
+    currentUser.sendEmailVerification();
+  }
+
   logoutUser() {
     this.store.dispatch(new StartLoading());
     this.afAuth.auth
