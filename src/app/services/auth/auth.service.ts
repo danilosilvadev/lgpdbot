@@ -1,9 +1,10 @@
-import { Injectable } from "@angular/core";
+import { Injectable, isDevMode } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
 import { StartLoading, StopLoading, SetUserStatus } from "../../ngrx/actions";
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: "root"
@@ -11,6 +12,8 @@ import { StartLoading, StopLoading, SetUserStatus } from "../../ngrx/actions";
 export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
+    private afDb: AngularFirestore,
+
     private router: Router,
     private store: Store<ReducersModel>
   ) {}
@@ -72,6 +75,12 @@ export class AuthService {
               const userStatus = this.userStatusMiddleware(currentUser);
               this.store.dispatch(new SetUserStatus(userStatus));
               // Aqui SATUR N TEM COMO ERRAR
+              console.log('userStatus.userId', userStatus.userId)
+
+              this.afDb.collection('user_status')
+                .doc(userStatus.userId)
+                .set(userStatus)
+
               this.router.navigate([`/dashboard`]);
             })
             .catch(err => {

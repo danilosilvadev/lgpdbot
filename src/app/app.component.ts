@@ -33,7 +33,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.userStatusService.fetchUserStatus().then(obs => {
       obs.subscribe(userStatus => {
         this.userStatus = userStatus;
-        console.log(userStatus, 'aqui veio?')
       })
     });
   }
