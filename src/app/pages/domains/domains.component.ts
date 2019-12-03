@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomainsService } from 'src/app/services';
+import { Observable } from 'rxjs';
 
 interface Domain {
   name: string;
@@ -17,17 +18,17 @@ export class DomainsComponent implements OnInit {
     url: '',
   }
   domainList: { name: string; url: string; user_id: string}[]
+  domainsObservable: Observable<Domain[]>;
 
   constructor(private domainsService: DomainsService) {
   
    }
 
   ngOnInit() {
-    /* SATUR FAÇA ISSO
-    this.domainsService.fetchDomains().subscribe(data => {
-      this.domainList = data
+    this.domainsService.fetchDomains().then(obs => {
+      this.domainsObservable = obs;
     })
-    */
+    
   }
 
   onSubmit($event) {

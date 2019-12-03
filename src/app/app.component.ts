@@ -17,7 +17,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   message$: Observable<string>;
   userStatusObservable: Observable<UserStatus>;
   userStatus
-  constructor(private store: Store<ReducersModel>, private userStatusService: UserStatusService) {}
+  
+  constructor(
+    private store: Store<ReducersModel>, 
+    private userStatusService: UserStatusService
+  ) {}
 
   ngOnInit() {
     /*this.message$ = this.store.pipe(

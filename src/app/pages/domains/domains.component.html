@@ -27,3 +27,26 @@
     </div>
     
 </form>
+
+<div>
+    <ul>
+        <li 
+            *ngFor="let item of (domainsObservable | async)"
+            [ngStyle]="{
+                'display': 'flex', 
+                'justify-content': 'space-between'
+            }">
+            <div>
+                {{ item.name }}
+            </div>
+            <div>
+                <a target="_blank" href="{{ item.url }}"> {{ item.url }} </a>
+            </div>
+            <div [ngStyle]="{'color': item.isVerified ? '#508102' : '#333' }">
+                {{ item.isValidated ? "Sim" : "Não" }}
+            </div>
+            
+
+        </li>
+    </ul>
+</div>

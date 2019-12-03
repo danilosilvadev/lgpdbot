@@ -6,7 +6,7 @@ import { rootReducer } from "./ngrx/root.reducer";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
-import { AuthService } from "./services";
+import { AuthService, DomainsService } from "./services";
 import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -49,7 +49,8 @@ import { DomainsComponent } from './pages/domains/domains.component';
     AngularFireAuth,
     AngularFireAuthGuard,
     AuthService,
-    AngularFirestore
+    AngularFirestore,
+    DomainsService,
   ],
   bootstrap: [AppComponent]
 })
