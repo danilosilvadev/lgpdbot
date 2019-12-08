@@ -10,13 +10,13 @@
         class="input"
         type="text"
         placeholder="Text input"
-        formControlName="cookieName"
+        formControlName="name"
       />
       <span
         class="c-main"
         *ngIf="
-          !createCookieForm.get('cookieName').valid &&
-          createCookieForm.get('cookieName').touched === true
+          !createCookieForm.get('name').valid &&
+          createCookieForm.get('name').touched === true
         "
       >
         Nome do cookie precisa ter pelo menos 3 caracteres
@@ -52,14 +52,14 @@
         class="input"
         type="date"
         placeholder="Text input"
-        formControlName="expirationDate"
-        [value]="expirationDate | date: 'dd-MM-yyyy'"
+        formControlName="expDate"
+        [value]="expDate | date: 'dd-MM-yyyy'"
       />
       <span
         class="c-main"
         *ngIf="
-          !createCookieForm.get('expirationDate').valid &&
-          createCookieForm.get('expirationDate').touched === true
+          !createCookieForm.get('expDate').valid &&
+          createCookieForm.get('expDate').touched === true
         "
       >
         Você precisa escolher uma data para expiração

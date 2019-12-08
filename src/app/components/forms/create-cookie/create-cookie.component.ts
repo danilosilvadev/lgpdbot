@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { CookiesService } from "../../../services/cookies/cookies.service";
 
@@ -9,25 +9,26 @@ import { CookiesService } from "../../../services/cookies/cookies.service";
 })
 export class CreateCookieComponent implements OnInit {
   createCookieForm: FormGroup;
+  @Output() registerCookie = new EventEmitter();
 
-  constructor(private cookieService: CookiesService) {}
+  constructor() {}
 
   ngOnInit() {
     this.createCookieForm = new FormGroup({
-      cookieName: new FormControl("", [
-        Validators.required,
-        Validators.minLength(3)
-      ]),
+      name: new FormControl("", [Validators.required, Validators.minLength(3)]),
       provider: new FormControl("", [
         Validators.required,
         Validators.minLength(3)
       ]),
-      expirationDate: new FormControl("", [Validators.required])
+      expDate: new FormControl("", [Validators.required])
     });
   }
 
   onSubmit() {
-    this.cookieService.registerCookie(this.createCookieForm.value);
+    this.registerCookie.emit({
+      ...this.createCookieForm.value,
+      expDate: new Date(this.createCookieForm.value["expDate"])
+    });
     this.createCookieForm.reset();
   }
 }

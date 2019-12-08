@@ -16,7 +16,7 @@ import { Domain } from "../../models/domain.model";
 export class CookiesComponent implements OnInit {
   cookiesObservable: Observable<Cookie[]>;
   domains: Domain[];
-  dId: string;
+  domain: Domain;
 
   constructor(
     private cookiesService: CookiesService,
@@ -27,19 +27,24 @@ export class CookiesComponent implements OnInit {
   ngOnInit() {
     this.store.select(getUserStatus).subscribe(data => {
       this.domains = data.domains;
-      this.dId = data.domains && data.domains[0].did;
+      this.domain = data.domains[0];
     });
   }
 
-  onSelectdId(dId) {
-    this.dId = dId;
+  onRegisterGroup($event) {
+    this.groupService.registerGroup($event, this.domain.dId);
   }
 
-  onRegisterGroup($event) {
-    this.groupService.registerGroup($event, this.dId);
+  onRegisterCookie($event) {
+    console.log($event);
+    this.cookiesService.registerCookie($event, this.domain, {
+      name: "Obrigatórios",
+      gId: "do92KBtWpR3h3aHSjQfq"
+    });
   }
 
   onDomainSelected() {
+    // TODO: Make the fucking fetch here
     this.cookiesService.fetchCookies("123").then(obs => {
       obs.subscribe(res => {
         this.cookiesObservable = obs;
