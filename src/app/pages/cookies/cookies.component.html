@@ -1,0 +1,19 @@
+<select>
+  <option
+    value="domain_1"
+    *ngFor="let domain of domains"
+    [value]="domain.did"
+    >{{ domain.name }}</option
+  >
+</select>
+<ul>
+  <li *ngFor="let item of cookiesObservable | async">
+    <span>{{ item.cookieName }}</span>
+  </li>
+</ul>
+<div>
+  <app-create-group
+    (registerGroup)="onRegisterGroup($event)"
+  ></app-create-group>
+</div>
+<app-create-cookie></app-create-cookie>

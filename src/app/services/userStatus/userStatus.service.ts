@@ -14,29 +14,48 @@ import { getUIDFromIDB } from "../../utils/idb";
   providedIn: "root"
 })
 export class UserStatusService {
-  appdataCollection: AngularFirestoreCollection<UserStatus>;
+  userStatusCollection: AngularFirestoreCollection<UserStatus>;
 
   constructor(
     private afDb: AngularFirestore,
     private store: Store<ReducersModel>
   ) {}
 
-  async fetchUserStatus() {
-    return getUIDFromIDB().then(userId => {
-      if (!userId) return;
-      this.appdataCollection = this.afDb.collection("user_status", ref =>
-        ref.where("userId", "==", userId)
+  userStatusMiddleware(currentUser): UserStatus {
+    return {
+      email: currentUser.email,
+      name: currentUser.displayName,
+      isVerified: currentUser.emailVerified,
+      uid: currentUser.uid,
+      domains: []
+    };
+  }
+
+  registerUserStatus(currentUser) {
+    const userStatus = this.userStatusMiddleware(currentUser);
+    this.store.dispatch(new SetUserStatus(userStatus));
+    this.afDb
+      .collection("users")
+      .doc(userStatus.uid)
+      .set({
+        ...userStatus,
+        domains: []
+      });
+  }
+
+  fetchUserStatus() {
+    return getUIDFromIDB().then(uid => {
+      if (!uid) {
+        return;
+      }
+      this.userStatusCollection = this.afDb.collection("users", ref =>
+        ref.where("uid", "==", uid)
       );
-      return this.appdataCollection.snapshotChanges().pipe(
+      return this.userStatusCollection.snapshotChanges().pipe(
         map(res => {
-          const userStatus = res.map(({ payload: { doc } }) => ({
-            userId,
-            name: doc.data().name,
-            email: doc.data().email,
-            isVerified: doc.data().isVerified
-          }));
-          this.store.dispatch(new SetUserStatus(userStatus[0]));
-          return userStatus[0];
+          const userStatus = res[0].payload.doc.data();
+          this.store.dispatch(new SetUserStatus(userStatus));
+          return userStatus;
         })
       );
     });

@@ -6,7 +6,20 @@ export const initialState = {
       name: "",
       email: "",
       isVerified: false,
-      userId: ""
+      uid: ""
     }
-  }
+  },
+  cookies: [
+    {
+      cookieId: "",
+      cookieName: "",
+      expirationDate: null,
+      domainName: "",
+      group: {
+        id: "",
+        name: ""
+      },
+      provider: ""
+    }
+  ]
 };

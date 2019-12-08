@@ -1,4 +1,5 @@
 import { UserStatus } from "./user.model";
+import { Cookie } from "./cookie.model";
 
 export interface ReducersModel {
   messageReducer: { message: string };
@@ -6,4 +7,5 @@ export interface ReducersModel {
   userReducer: {
     user: { status: UserStatus };
   };
+  cookieReducer: { cookies: Cookie[] };
 }

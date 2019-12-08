@@ -5,6 +5,9 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class DepthPipe implements PipeTransform {
   transform(value: any, prop: string): any {
+    if (!value) {
+      return;
+    }
     return value[prop];
   }
 }

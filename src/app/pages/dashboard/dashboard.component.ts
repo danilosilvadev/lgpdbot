@@ -22,15 +22,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private store: Store<ReducersModel>
   ) {}
 
-  ngOnInit() {
-    this.store.select(getUserStatus).subscribe(data => {
-      if (!data.userId) {
-        this.userStatusService.fetchUserStatus().then(obs => {
-          this.userStatusObservable = obs;
-        });
-      }
-    });
-  }
+  ngOnInit() {}
 
   resendEmail() {
     this.auth.sendEmailVerification();

@@ -1,4 +1,5 @@
 import { UserStatus } from "./user.model";
+import { Cookie } from "./cookie.model";
 
 export interface StateModel {
   message: string;
@@ -6,4 +7,5 @@ export interface StateModel {
   user: {
     status: UserStatus;
   };
+  cookies: Cookie[];
 }

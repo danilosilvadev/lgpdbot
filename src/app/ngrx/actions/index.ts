@@ -4,11 +4,13 @@ import {
   changeMessageToEnglish
 } from "./message.action";
 import { SetUserStatus } from "./user.action";
+import { cookieActions } from "./cookie.action";
 
 export {
   StartLoading,
   StopLoading,
   changeMessageToSpanish,
   changeMessageToEnglish,
-  SetUserStatus
+  SetUserStatus,
+  cookieActions
 };
