@@ -9,6 +9,7 @@ import { SetUserStatus } from "src/app/ngrx/actions";
 import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
 import { getUIDFromIDB } from "../../utils/idb";
+import { FIREBASE_KEY } from "../../keys";
 
 @Injectable({
   providedIn: "root"
@@ -44,9 +45,12 @@ export class UserStatusService {
   }
 
   fetchUserStatus() {
-    return getUIDFromIDB().then(uid => {
-      if (!uid) {
-        return;
+    let uid;
+    return getUIDFromIDB().then(userId => {
+      if (!userId) {
+        uid = JSON.parse(localStorage.getItem(FIREBASE_KEY)).uid;
+      } else {
+        uid = userId;
       }
       this.userStatusCollection = this.afDb.collection("users", ref =>
         ref.where("uid", "==", uid)
