@@ -7,7 +7,8 @@ import {
   redirectUnauthorizedTo,
   AngularFireAuthGuard
 } from "@angular/fire/auth-guard";
-import { DomainsComponent } from './pages/domains/domains.component';
+import { DomainsComponent } from "./pages/domains/domains.component";
+import { CookiesComponent } from "./pages/cookies/cookies.component";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(["login"]);
 
@@ -29,6 +30,12 @@ const routes: Routes = [
   {
     path: "domains",
     component: DomainsComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
+  },
+  {
+    path: "cookies",
+    component: CookiesComponent,
     canActivate: [AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   }

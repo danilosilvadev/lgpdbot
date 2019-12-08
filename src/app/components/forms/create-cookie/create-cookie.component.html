@@ -1,0 +1,75 @@
+<form
+  class="section p-0"
+  [formGroup]="createCookieForm"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input
+        class="input"
+        type="text"
+        placeholder="Text input"
+        formControlName="name"
+      />
+      <span
+        class="c-main"
+        *ngIf="
+          !createCookieForm.get('name').valid &&
+          createCookieForm.get('name').touched === true
+        "
+      >
+        Nome do cookie precisa ter pelo menos 3 caracteres
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Provider</label>
+    <div class="control">
+      <input
+        class="input"
+        type="text"
+        placeholder="Text input"
+        formControlName="provider"
+      />
+      <span
+        class="c-main"
+        *ngIf="
+          !createCookieForm.get('provider').valid &&
+          createCookieForm.get('provider').touched === true
+        "
+      >
+        Provider do cookie precisa ter pelo menos 3 caracteres
+      </span>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Validade</label>
+    <div class="control">
+      <input
+        class="input"
+        type="date"
+        placeholder="Text input"
+        formControlName="expDate"
+        [value]="expDate | date: 'dd-MM-yyyy'"
+      />
+      <span
+        class="c-main"
+        *ngIf="
+          !createCookieForm.get('expDate').valid &&
+          createCookieForm.get('expDate').touched === true
+        "
+      >
+        Você precisa escolher uma data para expiração
+      </span>
+    </div>
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <input type="submit" [disabled]="!createCookieForm.valid" />
+    </div>
+  </div>
+</form>

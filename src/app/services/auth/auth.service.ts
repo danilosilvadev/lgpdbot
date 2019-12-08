@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
 import { StartLoading, StopLoading, SetUserStatus } from "../../ngrx/actions";
+import { UserStatusService } from "../userStatus/userStatus.service";
 
 @Injectable({
   providedIn: "root"
@@ -12,24 +13,16 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
-    private store: Store<ReducersModel>
+    private store: Store<ReducersModel>,
+    private userStatusService: UserStatusService
   ) {}
-
-  userStatusMiddleware(currentUser) {
-    return {
-      email: currentUser.email,
-      name: currentUser.displayName,
-      isVerified: currentUser.emailVerified,
-      userId: currentUser.uid
-    };
-  }
 
   loginUser(authData: { email: string; password: string }) {
     this.store.dispatch(new StartLoading());
     this.afAuth.auth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then(res => {
-        this.onSuccessLogin();
+        this.router.navigate([`/dashboard`]);
       })
       .catch(err => {
         console.error(err);
@@ -37,12 +30,6 @@ export class AuthService {
       .finally(() => {
         this.store.dispatch(new StopLoading());
       });
-  }
-
-  onSuccessLogin() {
-    const userStatus = this.userStatusMiddleware(this.afAuth.auth.currentUser);
-    this.store.dispatch(new SetUserStatus(userStatus));
-    this.router.navigate([`/dashboard`]);
   }
 
   registerUser(authData) {
@@ -69,9 +56,7 @@ export class AuthService {
           currentUser
             .sendEmailVerification()
             .then(() => {
-              const userStatus = this.userStatusMiddleware(currentUser);
-              this.store.dispatch(new SetUserStatus(userStatus));
-              // Aqui SATUR N TEM COMO ERRAR
+              this.userStatusService.registerUserStatus(currentUser);
               this.router.navigate([`/dashboard`]);
             })
             .catch(err => {
@@ -82,6 +67,11 @@ export class AuthService {
           console.error(err);
         });
     }
+  }
+
+  sendEmailVerification() {
+    const currentUser = this.afAuth.auth.currentUser;
+    currentUser.sendEmailVerification();
   }
 
   logoutUser() {

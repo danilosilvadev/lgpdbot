@@ -1,11 +1,13 @@
 import { Action } from "@ngrx/store";
 import { SET_USER_STATUS } from "../actionTypes";
+import { Domain } from "../../models/domain.model";
 
 interface UserStatus {
   name: string;
   email: string;
   isVerified: boolean;
-  userId: string;
+  uid: string;
+  domains: Domain[];
 }
 
 export class SetUserStatus implements Action {

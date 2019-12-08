@@ -7,7 +7,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AuthService } from "./services";
-import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -17,9 +17,12 @@ import { LoginComponent } from "./pages/login/login.component";
 import { LoginFormComponent } from "./components/forms/login-form/login-form.component";
 import { CreateAcountFormComponent } from "./components/forms/create-acount-form/create-acount-form.component";
 import { AngularFireAuthGuard } from "@angular/fire/auth-guard";
-import { AsyncDepthPipe } from './utils/pipes/async-depth.pipe';
-import { DepthPipe } from './utils/pipes/depth.pipe';
-import { DomainsComponent } from './pages/domains/domains.component';
+import { AsyncDepthPipe } from "./utils/pipes/async-depth.pipe";
+import { DepthPipe } from "./utils/pipes/depth.pipe";
+import { DomainsComponent } from "./pages/domains/domains.component";
+import { CookiesComponent } from "./pages/cookies/cookies.component";
+import { CreateCookieComponent } from "./components/forms/create-cookie/create-cookie.component";
+import { CreateGroupComponent } from './components/forms/create-group/create-group.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +34,15 @@ import { DomainsComponent } from './pages/domains/domains.component';
     AsyncDepthPipe,
     DepthPipe,
     DomainsComponent,
+    CookiesComponent,
+    CreateCookieComponent,
+    CreateGroupComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(rootReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
