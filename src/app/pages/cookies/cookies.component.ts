@@ -15,6 +15,7 @@ import { Domain } from "../../models/domain.model";
 })
 export class CookiesComponent implements OnInit {
   cookiesObservable: Observable<Cookie[]>;
+  groupObservable: Observable<any>;
   domains: Domain[];
   domain: Domain;
 
@@ -28,36 +29,35 @@ export class CookiesComponent implements OnInit {
     this.store.select(getUserStatus).subscribe(data => {
       this.domains = data.domains;
       this.domain = data.domains[0];
+      this.onLoadgroups(data.domains[0]);
     });
   }
 
   onRegisterGroup($event) {
-    this.groupService.registerGroup($event, this.domain.dId);
+    this.groupService.registerGroup($event, this.domain);
   }
 
   onRegisterCookie($event) {
-    console.log($event);
-    this.cookiesService.registerCookie($event, this.domain, {
-      name: "Obrigatórios",
-      gId: "do92KBtWpR3h3aHSjQfq"
-    });
+    this.cookiesService.registerCookie(
+      $event,
+      {
+        did: this.domain.did,
+        domainActive: true
+      },
+      {
+        gid: "mUi3hXVkM4vPjtNHj0aa",
+        groupActive: true
+      }
+    );
   }
 
-  onDomainSelected() {
-    // TODO: Make the fucking fetch here
-    this.cookiesService.fetchCookies("123").then(obs => {
-      obs.subscribe(res => {
-        this.cookiesObservable = obs;
-        let arr = [];
-        res.forEach(item => {
-          if (arr.filter(i => i[0].domainName === item.domainName)) {
-            arr.push([item]);
-          }
-        });
-        // TODO: Here it will filter and separate in chunk arrays different groups to display separetely
-        console.log(arr, "wistle");
-        //console.log(res.filter(), "aqui");
-      });
-    });
+  onUpdateGroup(data, group) {
+    this.groupService.updateGroup(data.value, group);
+  }
+
+  onLoadgroups(domain) {
+    if (domain) {
+      this.groupObservable = this.groupService.fetchGroups(domain.did);
+    }
   }
 }

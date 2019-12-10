@@ -1,5 +1,6 @@
 export interface Domain {
   name: string;
-  dId: string;
+  did: string;
   url: string;
+  domainActive: boolean;
 }
