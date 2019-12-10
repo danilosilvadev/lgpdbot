@@ -8,6 +8,7 @@ const AUTH = {
   SIGN_OUT: "SIGN_OUT"
 };
 const SET_USER_STATUS = "SET_USER_STATUS";
+const SET_DOMAIN_LIST = "SET_DOMAIN_LIST";
 
 export {
   START_LOADING,
