@@ -4,7 +4,7 @@ export interface Cookie {
   expirationDate: string;
   domainName: string;
   group: {
-    id: string;
+    gid: string;
     name: string;
     groupActive: boolean;
   };

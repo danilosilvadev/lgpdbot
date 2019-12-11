@@ -2,11 +2,9 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
 import { getUserStatus } from "src/app/ngrx/selectors";
-import {
-  AngularFirestore,
-  AngularFirestoreCollection
-} from "@angular/fire/firestore";
+import { AngularFirestore } from "@angular/fire/firestore";
 import { map } from "rxjs/operators";
+import { Domain } from "src/app/models/domain.model";
 
 @Injectable({
   providedIn: "root"
@@ -28,13 +26,16 @@ export class GroupService {
       .set({ ...group, isActive: false });
   }
 
-  updateGroup(groupName, group) {
+  updateGroup(
+    group: { domain: Domain; gid: string; isActive: boolean; name: string },
+    data: { type: string; value: any }
+  ): void {
     this.afDb
       .collection("cookies")
       .doc(group.domain.did)
       .collection("group")
       .doc(group.gid)
-      .set({ ...group, name: groupName });
+      .set({ ...group, [data.type]: data.value });
   }
 
   fetchGroups(did) {
@@ -49,11 +50,13 @@ export class GroupService {
       .snapshotChanges()
       .pipe(
         map(res => {
-          return res.map(item => ({
-            ...item.payload.doc.data(),
-            gid: item.payload.doc.id,
-            isActive: true
-          }));
+          return res
+            .map(item => ({
+              ...item.payload.doc.data(),
+              gid: item.payload.doc.id,
+              isActive: item.payload.doc.data().isActive
+            }))
+            .filter(group => group.isActive !== false);
         })
       );
   }

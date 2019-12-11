@@ -52,7 +52,11 @@ export class CookiesComponent implements OnInit {
   }
 
   onUpdateGroup(data, group) {
-    this.groupService.updateGroup(data.value, group);
+    this.groupService.updateGroup(group, { type: "name", value: data.value });
+  }
+
+  onDeleteGroup(group) {
+    this.groupService.updateGroup(group, { type: "isActive", value: false });
   }
 
   onLoadgroups(domain) {
