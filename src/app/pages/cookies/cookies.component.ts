@@ -32,7 +32,7 @@ export class CookiesComponent implements OnInit {
   }
 
   onRegisterGroup($event) {
-    this.groupService.registerGroup($event, this.domain.dId);
+    this.groupService.registerGroup($event, this.domain.did);
   }
 
   onRegisterCookie($event) {

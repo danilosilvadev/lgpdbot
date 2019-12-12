@@ -1,29 +1,41 @@
-<form
-    #createDomainsForm="ngForm"
-    (ngSubmit)="onSubmit(createDomainsForm)"
->
-    <div>
-        <label for='domainName'>Nome</label>
-        <input 
-            type='text'
-            name='name'
-            id='domainName'
-            required
-            [(ngModel)]="domain.name"
-        />
-    </div>
-    <div>
-        <label for='domainUrl'>Endereço</label>
-        <input 
-            type='text'
-            name='url'
-            id='domainUrl'
-            required
-            [(ngModel)]="domain.url"
-        />
-    </div>
-    <div>
-        <input type='submit' [disabled]="!createDomainsForm.form.valid" />
-    </div>
-    
-</form>
+<app-domain-form
+    (registerDomain)="onRegisterDomain($event)"
+    (updateDomain)="onRegisterDomain($event)"
+
+    [editDomain]="editDomain"
+    [isEditing]="isEditing"
+></app-domain-form>
+
+<div class="domains">
+    <h3>Domínios</h3>
+    <table class="domains__list">
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Url</td>
+                <td>Validado</td>
+                <td>Ações</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr 
+                *ngFor="let item of (domains); let index"
+            >
+                <td>
+                    {{ item.name }}
+                </td>
+                <td>
+                    <a target="_blank" href="{{ item.url }}"> {{ item.url }} </a>
+                </td>
+                <td [ngStyle]="{'color': item.isValidated ? '#508102' : '#333' }">
+                    {{ item.isValidated ? "Sim" : "Não" }}
+                </td>
+                <td>
+                    <button (click)="onPopulateForm(item)">
+                        Editar
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

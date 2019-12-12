@@ -1,0 +1,31 @@
+<form
+    (ngSubmit)="onSubmit(domainForm)"
+    [formGroup]="domainForm"
+    [ngStyle]="{
+        'display': 'flex'
+    }"
+>
+    <div>
+        <label for='domainName'>Nome</label>
+        <input 
+            type='text'
+            formControlName='name'
+            id='domainName'
+        />
+    </div>
+    <div>
+        <label for='domainUrl'>Url</label>
+        <input 
+            type='text'
+            formControlName='url'
+            id='domainUrl'
+            
+        />
+    </div>
+    <div>
+        <input type='submit' [disabled]="!domainForm.valid" />
+    </div>
+    {{ editDomain | json }}
+    {{ isEditing }}
+    
+</form>

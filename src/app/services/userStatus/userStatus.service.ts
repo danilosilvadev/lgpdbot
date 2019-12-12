@@ -10,6 +10,7 @@ import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
 import { getUIDFromIDB } from "../../utils/idb";
 import { FIREBASE_KEY } from "../../keys";
+import { Domain } from 'src/app/models/domain.model';
 
 @Injectable({
   providedIn: "root"
@@ -30,6 +31,20 @@ export class UserStatusService {
       uid: currentUser.uid,
       domains: []
     };
+  }
+
+  registerDomain(
+    domain: { name: string, url: string }, 
+    uid: string, 
+    domains: Array<Domain>
+  ) {
+
+    this.afDb
+      .collection("users")
+      .doc(uid)
+      .update({
+        domains: [...domains, { did: domain.url, isValidated: false, ...domain }]
+      })
   }
 
   registerUserStatus(currentUser) {

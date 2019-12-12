@@ -57,7 +57,7 @@ export class CookiesService {
   registerCookie(cookie, domain, group) {
     this.afDb
       .collection("cookies")
-      .doc(domain.dId)
+      .doc(domain.did)
       .collection("group")
       .doc(group.gId)
       .collection("cookie")

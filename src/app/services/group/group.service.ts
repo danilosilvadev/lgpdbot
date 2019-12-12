@@ -13,11 +13,11 @@ export class GroupService {
     private af: AngularFirestore
   ) {}
 
-  registerGroup(group: { name: string }, dId: string) {
+  registerGroup(group: { name: string }, did: string) {
     this.store.select(getUserStatus).subscribe(data => {
       this.af
         .collection("cookies")
-        .doc(dId)
+        .doc(did)
         .collection("group")
         .add(group);
     });

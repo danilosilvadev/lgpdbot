@@ -23,6 +23,7 @@ import { DomainsComponent } from "./pages/domains/domains.component";
 import { CookiesComponent } from "./pages/cookies/cookies.component";
 import { CreateCookieComponent } from "./components/forms/create-cookie/create-cookie.component";
 import { CreateGroupComponent } from './components/forms/create-group/create-group.component';
+import { DomainFormComponent } from './components/forms/domain-form/domain-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CreateGroupComponent } from './components/forms/create-group/create-gro
     DomainsComponent,
     CookiesComponent,
     CreateCookieComponent,
-    CreateGroupComponent
+    CreateGroupComponent,
+    DomainFormComponent,
   ],
   imports: [
     BrowserModule,
