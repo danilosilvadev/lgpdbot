@@ -1,12 +1,12 @@
+import { Domain } from "./domain.model";
+import { Group } from "./group.model";
+
 export interface Cookie {
-  cookieId: string;
-  cookieName: string;
-  expirationDate: string;
-  domainName: string;
-  group: {
-    gid: string;
-    name: string;
-    groupActive: boolean;
-  };
+  cid: string;
+  name: string;
+  active: boolean;
+  expDate: string;
+  domain: Domain;
+  group: Group;
   provider: string;
 }

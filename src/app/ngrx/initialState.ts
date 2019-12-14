@@ -12,13 +12,19 @@ export const initialState = {
   },
   cookies: [
     {
-      cookieId: "",
-      cookieName: "",
-      expirationDate: null,
-      domainName: "",
+      cid: "",
+      name: "",
+      expDate: null,
+      active: false,
+      domain: {
+        name: "",
+        active: false,
+        did: ""
+      },
       group: {
-        id: "",
-        name: ""
+        gid: "",
+        name: "",
+        active: false
       },
       provider: ""
     }
