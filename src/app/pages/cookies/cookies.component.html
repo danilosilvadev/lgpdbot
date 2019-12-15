@@ -9,9 +9,8 @@
 <ul>
   <li *ngFor="let item of cookiesObservable | async">
     <span>{{ item.name }}</span>
-    <input type="text" #cookieName />
-    <button (click)="onUpdateCookie(cookieName, item)">
-      update
+    <button (click)="onSelectCookie(item)">
+      Edit
     </button>
     <button (click)="onDeleteCookie(item)">
       Delete
@@ -24,16 +23,14 @@
   ></app-create-group>
 </div>
 <app-create-cookie
-  *ngIf="gid"
+  [hidden]="!gid"
+  #createCookieForm
   (registerCookie)="onRegisterCookie($event)"
+  (updateCookie)="onUpdateCookie($event)"
 ></app-create-cookie>
 {{ groupObservable | async | json }}
 <ul>
-  <li
-    *ngFor="let item of groupObservable | async"
-    key="item.id"
-    (click)="onSelectGroup(item.gid)"
-  >
+  <li *ngFor="let item of groupObservable | async" key="item.id">
     {{ item.name }}
     <input type="text" #groupName />
     <button (click)="onUpdateGroup(groupName, item)">
@@ -41,6 +38,9 @@
     </button>
     <button (click)="onDeleteGroup(item)">
       Delete
+    </button>
+    <button (click)="onSelectGroup(item.gid)">
+      Add cookie
     </button>
   </li>
 </ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { CookiesService } from "../../services";
 import { Observable } from "rxjs";
 import { Cookie } from "src/app/models/cookie.model";
@@ -8,22 +8,29 @@ import { getUserStatus } from "src/app/ngrx/selectors";
 import { GroupService } from "../../services";
 import { Domain } from "../../models/domain.model";
 import { Group } from "../../models/group.model";
+import { CreateCookieComponent } from "../../components/forms/create-cookie/create-cookie.component";
+import { TimeStampToDatePipe } from "../../utils/pipes/time-stamp-to-date.pipe";
 
 @Component({
   selector: "app-cookies",
   templateUrl: "./cookies.component.html",
-  styleUrls: ["./cookies.component.scss"]
+  styleUrls: ["./cookies.component.scss"],
+  providers: [TimeStampToDatePipe]
 })
 export class CookiesComponent implements OnInit {
   cookiesObservable: Observable<Cookie[]>;
   groupObservable: Observable<Group[]>;
   domains: Domain[];
-  domain: Domain;  gid: string;
+  domain: Domain;
+  gid: string;
+  @ViewChild(CreateCookieComponent, { static: false })
+  createCookieComponent: CreateCookieComponent;
 
   constructor(
     private cookiesService: CookiesService,
     private store: Store<ReducersModel>,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private timeStampToDatePipe: TimeStampToDatePipe
   ) {}
 
   ngOnInit() {
@@ -31,12 +38,23 @@ export class CookiesComponent implements OnInit {
       this.domains = data.domains;
       this.domain = data.domains[0];
       this.onFetchGroups(data.domains[0]);
-      this.onFetchCookies(data.domains[0]);
+      this.onFetchCookies(data.domains[0]); // TODO: If this changes to pick only inside the group onclick this fethc will not be here
     });
+  }
+
+  onSelectCookie(cookie) {
+    this.gid = cookie.domain.did;
+    this.createCookieComponent.createCookieForm.setValue({
+      name: cookie.name,
+      expDate: this.timeStampToDatePipe.transform(cookie.expDate),
+      provider: cookie.provider
+    });
+    this.createCookieComponent.editMode = true;
   }
 
   onSelectGroup(gid) {
     this.gid = gid;
+    this.createCookieComponent.editMode = false;
   }
 
   onRegisterGroup($event) {
@@ -63,23 +81,15 @@ export class CookiesComponent implements OnInit {
     }
   }
 
-  /*
-  onDeleteCookie(cookie) {
-    this.cookiesService.updateCookie(cookie, {
-      type: "active",
-      value: false
-    });
-  }
-  */
-
-  /*
-  onUpdateCookie(data, cookie) {
+  onUpdateCookie(cookie) {
+    console.log(cookie);
+    /*
     this.cookiesService.updateCookie(
       { ...cookie, active: true },
       { type: "name", value: data.value }
     );
+    */
   }
-  */
 
   onDeleteCookie(cookie) {
     this.cookiesService.updateCookie(cookie, { type: "active", value: false });
@@ -87,13 +97,16 @@ export class CookiesComponent implements OnInit {
 
   onUpdateGroup(data, group) {
     this.groupService.updateGroup(
-      { ...group, active: true },
+      { ...group, domain: this.domain, active: true },
       { type: "name", value: data.value }
     );
   }
 
   onDeleteGroup(group) {
-    this.groupService.updateGroup(group, { type: "active", value: false });
+    this.groupService.updateGroup(
+      { ...group, domain: this.domain },
+      { type: "active", value: false }
+    );
   }
 
   onFetchGroups(domain) {

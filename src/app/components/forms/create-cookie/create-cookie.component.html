@@ -11,6 +11,7 @@
         type="text"
         placeholder="Text input"
         formControlName="name"
+        #cookieName
       />
       <span
         class="c-main"
@@ -32,6 +33,7 @@
         type="text"
         placeholder="Text input"
         formControlName="provider"
+        #cookieProvider
       />
       <span
         class="c-main"
@@ -54,6 +56,7 @@
         placeholder="Text input"
         formControlName="expDate"
         [value]="expDate | date: 'dd-MM-yyyy'"
+        #cookieExpDate
       />
       <span
         class="c-main"

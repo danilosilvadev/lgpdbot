@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { CookiesService } from "../../../services/cookies/cookies.service";
 
 @Component({
   selector: "app-create-cookie",
@@ -10,6 +9,8 @@ import { CookiesService } from "../../../services/cookies/cookies.service";
 export class CreateCookieComponent implements OnInit {
   createCookieForm: FormGroup;
   @Output() registerCookie = new EventEmitter();
+  @Output() updateCookie = new EventEmitter();
+  editMode: boolean;
 
   constructor() {}
 
@@ -25,10 +26,18 @@ export class CreateCookieComponent implements OnInit {
   }
 
   onSubmit() {
-    this.registerCookie.emit({
-      ...this.createCookieForm.value,
-      expDate: new Date(this.createCookieForm.value["expDate"])
-    });
+    console.log(this.createCookieForm.value["expDate"]);
+    if (this.editMode) {
+      this.updateCookie.emit({
+        ...this.createCookieForm.value,
+        expDate: new Date(this.createCookieForm.value["expDate"])
+      });
+    } else {
+      this.registerCookie.emit({
+        ...this.createCookieForm.value,
+        expDate: new Date(this.createCookieForm.value["expDate"])
+      });
+    }
     this.createCookieForm.reset();
   }
 }
