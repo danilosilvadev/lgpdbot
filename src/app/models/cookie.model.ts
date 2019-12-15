@@ -6,7 +6,10 @@ export interface Cookie {
   name: string;
   active: boolean;
   expDate: string;
-  domain: Domain;
+  domain: {
+    did: string;
+    active: boolean;
+  };
   group: Group;
   provider: string;
 }

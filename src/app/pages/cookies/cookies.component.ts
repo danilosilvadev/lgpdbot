@@ -18,8 +18,7 @@ export class CookiesComponent implements OnInit {
   cookiesObservable: Observable<Cookie[]>;
   groupObservable: Observable<Group[]>;
   domains: Domain[];
-  domain: Domain;
-  gid: string;
+  domain: Domain;  gid: string;
 
   constructor(
     private cookiesService: CookiesService,

@@ -22,7 +22,6 @@ export class GroupService {
     group: { domain: Domain; gid: string; active: boolean; name: string },
     data: { type: string; value: any }
   ): void {
-    console.log(group, data, "aqui vem");
     this.afDb
       .collection("cookies")
       .doc(group.domain.did)
