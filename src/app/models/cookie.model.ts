@@ -1,11 +1,12 @@
 export interface Cookie {
   cookieId: string;
   cookieName: string;
-  expirationDate: Date;
+  expirationDate: string;
   domainName: string;
   group: {
-    id: string;
+    gid: string;
     name: string;
+    groupActive: boolean;
   };
   provider: string;
 }

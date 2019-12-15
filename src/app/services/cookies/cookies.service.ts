@@ -8,7 +8,6 @@ import {
 import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
-import { SetCookies } from "src/app/ngrx/actions/cookie.action";
 import { Cookie } from "src/app/models/cookie.model";
 
 @Injectable({
@@ -57,9 +56,9 @@ export class CookiesService {
   registerCookie(cookie, domain, group) {
     this.afDb
       .collection("cookies")
-      .doc(domain.dId)
+      .doc(domain.did)
       .collection("group")
-      .doc(group.gId)
+      .doc(group.gid)
       .collection("cookie")
       .add({
         ...cookie,

@@ -19,3 +19,16 @@
 <app-create-cookie
   (registerCookie)="onRegisterCookie($event)"
 ></app-create-cookie>
+{{ groupObservable | async | json }}
+<ul>
+  <li *ngFor="let item of groupObservable | async" key="item.id">
+    {{ item.name }}
+    <input type="text" #groupName />
+    <button (click)="onUpdateGroup(groupName, item)">
+      update
+    </button>
+    <button (click)="onDeleteGroup(item)">
+      Delete
+    </button>
+  </li>
+</ul>
