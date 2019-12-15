@@ -22,7 +22,7 @@ export class CookiesService {
     private store: Store<ReducersModel>
   ) {}
 
-  updateCookie(cookie: Cookie, data: { type: string; value: any }): void {
+  updateCookie(cookie: Cookie): void {
     this.afDb
       .collection("cookies")
       .doc(cookie.domain.did)
@@ -30,39 +30,42 @@ export class CookiesService {
       .doc(cookie.group.gid)
       .collection("cookie")
       .doc(cookie.cid)
-      .set({ ...cookie, [data.type]: data.value });
+      .set({ ...cookie });
   }
 
-  fetchCookies(did): Observable<Cookie[]> {
+  fetchCookies(did, gid): Observable<Cookie[]> {
     this.store.select(getUserStatus).subscribe(data => {
       this.uid = data.uid;
     });
     if (!this.uid) {
       return;
     }
-    this.cookiesCollection = this.afDb.collectionGroup("cookie", ref =>
-      ref.where("domain.did", "==", did)
-    );
-    // TODO: test pick domain.id if not possible, add did at top level cookie
-    return this.cookiesCollection.snapshotChanges().pipe(
-      map((res): Cookie[] => {
-        const cookies = res.map(
-          ({ payload: { doc } }): Cookie => {
-            return {
-              name: doc.data().name,
-              active: doc.data().active,
-              expDate: doc.data().expDate,
-              domain: doc.data().domain,
-              provider: doc.data().provider,
-              group: doc.data().group,
-              cid: doc.id
-            };
-          }
-        );
-        // this.store.dispatch(new SetCookies(cookies));
-        return cookies.filter(cookie => cookie.active !== false);
-      })
-    );
+    return this.afDb
+      .collection("cookies")
+      .doc(did)
+      .collection("group")
+      .doc(gid)
+      .collection("cookie")
+      .snapshotChanges()
+      .pipe(
+        map((res): Cookie[] => {
+          const cookies = res.map(
+            ({ payload: { doc } }): Cookie => {
+              return {
+                name: doc.data().name,
+                active: doc.data().active,
+                expDate: doc.data().expDate,
+                domain: doc.data().domain,
+                provider: doc.data().provider,
+                group: doc.data().group,
+                cid: doc.id
+              };
+            }
+          );
+          // this.store.dispatch(new SetCookies(cookies));
+          return cookies.filter(cookie => cookie.active !== false);
+        })
+      );
   }
 
   registerCookie(cookie, domain, group) {

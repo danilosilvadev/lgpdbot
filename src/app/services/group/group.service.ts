@@ -18,17 +18,18 @@ export class GroupService {
     private afDb: AngularFirestore
   ) {}
 
-  updateGroup(
-    group: { domain: Domain; gid: string; active: boolean; name: string },
-    data: { type: string; value: any }
-  ): void {
-    console.log(group, " what");
+  updateGroup(group: {
+    domain: Domain;
+    gid: string;
+    active: boolean;
+    name: string;
+  }): void {
     this.afDb
       .collection("cookies")
       .doc(group.domain.did)
       .collection("group")
       .doc(group.gid)
-      .set({ ...group, [data.type]: data.value });
+      .set({ ...group });
   }
 
   fetchGroups(did) {

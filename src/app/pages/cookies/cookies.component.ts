@@ -22,7 +22,9 @@ export class CookiesComponent implements OnInit {
   groupObservable: Observable<Group[]>;
   domains: Domain[];
   domain: Domain;
-  gid: string;
+  group: Group;
+  cid: string;
+  activeCookieForm: boolean;
   @ViewChild(CreateCookieComponent, { static: false })
   createCookieComponent: CreateCookieComponent;
 
@@ -38,23 +40,30 @@ export class CookiesComponent implements OnInit {
       this.domains = data.domains;
       this.domain = data.domains[0];
       this.onFetchGroups(data.domains[0]);
-      this.onFetchCookies(data.domains[0]); // TODO: If this changes to pick only inside the group onclick this fethc will not be here
     });
   }
 
   onSelectCookie(cookie) {
-    this.gid = cookie.domain.did;
     this.createCookieComponent.createCookieForm.setValue({
       name: cookie.name,
       expDate: this.timeStampToDatePipe.transform(cookie.expDate),
       provider: cookie.provider
     });
+    this.activeCookieForm = true;
     this.createCookieComponent.editMode = true;
+    this.cid = cookie.cid;
   }
 
-  onSelectGroup(gid) {
-    this.gid = gid;
+  onSelectGroup(group) {
+    this.group = group;
     this.createCookieComponent.editMode = false;
+    this.onFetchCookies(this.domain.did, group.gid);
+    this.activeCookieForm = false;
+  }
+
+  onOpenCookieForm() {
+    this.createCookieComponent.editMode = false;
+    this.activeCookieForm = true;
   }
 
   onRegisterGroup($event) {
@@ -69,44 +78,55 @@ export class CookiesComponent implements OnInit {
         active: true
       },
       {
-        gid: this.gid,
+        gid: this.group.gid,
         active: true
       }
     );
   }
 
-  onFetchCookies(domain) {
-    if (domain) {
-      this.cookiesObservable = this.cookiesService.fetchCookies(domain.did);
+  onFetchCookies(did, gid) {
+    if (did) {
+      this.cookiesObservable = this.cookiesService.fetchCookies(did, gid);
     }
   }
 
   onUpdateCookie(cookie) {
-    console.log(cookie);
-    /*
-    this.cookiesService.updateCookie(
-      { ...cookie, active: true },
-      { type: "name", value: data.value }
-    );
-    */
+    this.cookiesService.updateCookie({
+      ...cookie,
+      group: this.group,
+      domain: this.domain,
+      active: true,
+      cid: this.cid
+    });
+    this.activeCookieForm = false;
   }
 
   onDeleteCookie(cookie) {
-    this.cookiesService.updateCookie(cookie, { type: "active", value: false });
+    this.cookiesService.updateCookie({
+      ...cookie,
+      group: this.group,
+      domain: this.domain,
+      active: false,
+      cid: this.cid
+    });
+    this.activeCookieForm = false;
   }
 
   onUpdateGroup(data, group) {
-    this.groupService.updateGroup(
-      { ...group, domain: this.domain, active: true },
-      { type: "name", value: data.value }
-    );
+    this.groupService.updateGroup({
+      ...group,
+      domain: this.domain,
+      active: true,
+      name: data.value
+    });
   }
 
   onDeleteGroup(group) {
-    this.groupService.updateGroup(
-      { ...group, domain: this.domain },
-      { type: "active", value: false }
-    );
+    this.groupService.updateGroup({
+      ...group,
+      domain: this.domain,
+      active: false
+    });
   }
 
   onFetchGroups(domain) {
