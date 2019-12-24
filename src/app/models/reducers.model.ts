@@ -2,7 +2,10 @@ import { UserStatus } from "./user.model";
 import { Cookie } from "./cookie.model";
 
 export interface ReducersModel {
-  loadingReducer: boolean;
-  userReducer: UserStatus;
-  cookieReducer: Cookie[];
+  messageReducer: { message: string };
+  loadingReducer: { loading: boolean };
+  userReducer: {
+    user: { status: UserStatus };
+  };
+  cookieReducer: { cookies: Cookie[] };
 }

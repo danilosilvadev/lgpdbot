@@ -10,7 +10,6 @@ import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
 import { getUIDFromIDB } from "../../utils/idb";
 import { FIREBASE_KEY } from "../../keys";
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -57,13 +56,11 @@ export class UserStatusService {
         ref.where("uid", "==", uid)
       );
       return this.userStatusCollection.snapshotChanges().pipe(
-        map(
-          (res): UserStatus => {
-            const userStatus = res[0].payload.doc.data();
-            this.store.dispatch(new SetUserStatus(userStatus));
-            return userStatus;
-          }
-        )
+        map(res => {
+          const userStatus = res[0].payload.doc.data();
+          this.store.dispatch(new SetUserStatus(userStatus));
+          return userStatus;
+        })
       );
     });
   }

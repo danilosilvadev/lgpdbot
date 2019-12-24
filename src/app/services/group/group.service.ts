@@ -5,7 +5,6 @@ import { getUserStatus } from "src/app/ngrx/selectors";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { map } from "rxjs/operators";
 import { Domain } from "src/app/models/domain.model";
-import { Group } from "../../models/group.model";
 
 @Injectable({
   providedIn: "root"
@@ -18,18 +17,25 @@ export class GroupService {
     private afDb: AngularFirestore
   ) {}
 
-  updateGroup(group: {
-    domain: Domain;
-    gid: string;
-    active: boolean;
-    name: string;
-  }): void {
+  deactivateGroup(group, did) {
+    this.afDb
+      .collection("cookies")
+      .doc(did)
+      .collection("group")
+      .doc(group.did)
+      .set({ ...group, isActive: false });
+  }
+
+  updateGroup(
+    group: { domain: Domain; gid: string; isActive: boolean; name: string },
+    data: { type: string; value: any }
+  ): void {
     this.afDb
       .collection("cookies")
       .doc(group.domain.did)
       .collection("group")
       .doc(group.gid)
-      .set({ ...group });
+      .set({ ...group, [data.type]: data.value });
   }
 
   fetchGroups(did) {
@@ -43,26 +49,26 @@ export class GroupService {
       .collection("group")
       .snapshotChanges()
       .pipe(
-        map((res): Group[] => {
+        map(res => {
           return res
             .map(item => ({
-              name: item.payload.doc.data().name,
+              ...item.payload.doc.data(),
               gid: item.payload.doc.id,
-              active: item.payload.doc.data().active
+              isActive: item.payload.doc.data().isActive
             }))
-            .filter(group => group.active !== false);
+            .filter(group => group.isActive !== false);
         })
       );
   }
 
   registerGroup(
-    group: { name: string; active: boolean },
-    domain: { did: string; active: boolean }
+    group: { name: string; groupActive: boolean },
+    domain: { did: string; domainActive: boolean }
   ) {
     this.afDb
       .collection("cookies")
       .doc(domain.did)
       .collection("group")
-      .add({ ...group, active: true, domain });
+      .add({ ...group, domain });
   }
 }

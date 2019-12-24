@@ -6,32 +6,18 @@
     >{{ domain.name }}</option
   >
 </select>
-<section *ngIf="group" class="m-bottom-4">
-  <ul>
-    <li *ngFor="let item of cookiesObservable | async">
-      <span>{{ item.name }}</span>
-      <button (click)="onSelectCookie(item)">
-        Edit
-      </button>
-      <button (click)="onDeleteCookie(item)">
-        Delete
-      </button>
-    </li>
-  </ul>
-  <button (click)="onOpenCookieForm()">
-    Add a cookie at {{ group.name }} group
-  </button>
-</section>
+<ul>
+  <li *ngFor="let item of cookiesObservable | async">
+    <span>{{ item.cookieName }}</span>
+  </li>
+</ul>
 <div>
   <app-create-group
     (registerGroup)="onRegisterGroup($event)"
   ></app-create-group>
 </div>
 <app-create-cookie
-  [hidden]="!activeCookieForm"
-  #createCookieForm
   (registerCookie)="onRegisterCookie($event)"
-  (updateCookie)="onUpdateCookie($event)"
 ></app-create-cookie>
 {{ groupObservable | async | json }}
 <ul>
@@ -43,9 +29,6 @@
     </button>
     <button (click)="onDeleteGroup(item)">
       Delete
-    </button>
-    <button (click)="onSelectGroup(item)">
-      Show cookies
     </button>
   </li>
 </ul>

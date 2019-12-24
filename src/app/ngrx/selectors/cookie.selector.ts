@@ -1,9 +1,9 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { Cookie } from "src/app/models/cookie.model";
+import { StateModel } from "../../models/state.model";
 
-const getFeaturedCookies = createFeatureSelector<Cookie[]>("cookiesReducer");
+const getFeaturedCookies = createFeatureSelector<StateModel>("cookiesReducer");
 
 export const getCookies = createSelector(
   getFeaturedCookies,
-  cookies => cookies
+  state => state.cookies
 );

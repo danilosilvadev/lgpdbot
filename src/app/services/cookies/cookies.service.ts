@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import { getUIDFromIDB } from "../../utils/idb";
+
 import {
   AngularFirestore,
   AngularFirestoreCollectionGroup
@@ -7,65 +9,48 @@ import { map } from "rxjs/operators";
 import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
 import { Cookie } from "src/app/models/cookie.model";
-import { getUserStatus } from "src/app/ngrx/selectors";
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class CookiesService {
   cookiesCollection: AngularFirestoreCollectionGroup;
-  uid: string;
 
   constructor(
     private afDb: AngularFirestore,
     private store: Store<ReducersModel>
   ) {}
 
-  updateCookie(cookie: Cookie): void {
-    this.afDb
-      .collection("cookies")
-      .doc(cookie.domain.did)
-      .collection("group")
-      .doc(cookie.group.gid)
-      .collection("cookie")
-      .doc(cookie.cid)
-      .set({ ...cookie });
-  }
+  fetchCookies(domainId) {
+    return getUIDFromIDB().then(uid => {
+      if (!uid) return;
+      this.cookiesCollection = this.afDb.collectionGroup("domains", ref =>
+        ref.where("uid", "==", uid).where("domain_id", "==", domainId)
+      );
 
-  fetchCookies(did, gid): Observable<Cookie[]> {
-    this.store.select(getUserStatus).subscribe(data => {
-      this.uid = data.uid;
-    });
-    if (!this.uid) {
-      return;
-    }
-    return this.afDb
-      .collection("cookies")
-      .doc(did)
-      .collection("group")
-      .doc(gid)
-      .collection("cookie")
-      .snapshotChanges()
-      .pipe(
-        map((res): Cookie[] => {
+      return this.cookiesCollection.snapshotChanges().pipe(
+        map(res => {
           const cookies = res.map(
             ({ payload: { doc } }): Cookie => {
-              return {
-                name: doc.data().name,
-                active: doc.data().active,
-                expDate: doc.data().expDate,
-                domain: doc.data().domain,
-                provider: doc.data().provider,
-                group: doc.data().group,
-                cid: doc.id
+              const cookie = {
+                cookieId: doc.data().cookie_id,
+                cookieName: doc.data().cookie_name,
+                expirationDate: doc.data().expiration_date,
+                domainName: doc.data().domain_name,
+                group: {
+                  id: doc.data().group_id,
+                  name: doc.data().group_name
+                },
+                provider: doc.data().provider
               };
+              return cookie;
             }
           );
           // this.store.dispatch(new SetCookies(cookies));
-          return cookies.filter(cookie => cookie.active !== false);
+          return cookies;
         })
       );
+    });
   }
 
   registerCookie(cookie, domain, group) {

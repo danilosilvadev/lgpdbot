@@ -2,7 +2,10 @@ import { UserStatus } from "./user.model";
 import { Cookie } from "./cookie.model";
 
 export interface StateModel {
+  message: string;
   loading: boolean;
-  user: UserStatus;
+  user: {
+    status: UserStatus;
+  };
   cookies: Cookie[];
 }

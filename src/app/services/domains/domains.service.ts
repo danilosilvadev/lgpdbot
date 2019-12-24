@@ -34,6 +34,7 @@ export class DomainsService {
       this.domainsCollection = this.afDb.collection("domain_list", ref =>
         ref.where("uid", "==", id)
       );
+      console.log(id, "id aqui");
       return this.domainsCollection.snapshotChanges().pipe(
         map(res => {
           const domains = res.map(({ payload: { doc } }) => ({
