@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { CookiesService } from "../../services";
 import { Observable } from "rxjs";
 import { Cookie } from "src/app/models/cookie.model";
@@ -7,30 +7,63 @@ import { ReducersModel } from "src/app/models/reducers.model";
 import { getUserStatus } from "src/app/ngrx/selectors";
 import { GroupService } from "../../services";
 import { Domain } from "../../models/domain.model";
+import { Group } from "../../models/group.model";
+import { CreateCookieComponent } from "../../components/forms/create-cookie/create-cookie.component";
+import { TimeStampToDatePipe } from "../../utils/pipes/time-stamp-to-date.pipe";
 
 @Component({
   selector: "app-cookies",
   templateUrl: "./cookies.component.html",
-  styleUrls: ["./cookies.component.scss"]
+  styleUrls: ["./cookies.component.scss"],
+  providers: [TimeStampToDatePipe]
 })
 export class CookiesComponent implements OnInit {
   cookiesObservable: Observable<Cookie[]>;
-  groupObservable: Observable<any>;
+  groupObservable: Observable<Group[]>;
   domains: Domain[];
   domain: Domain;
+  group: Group;
+  cid: string;
+  activeCookieForm: boolean;
+  @ViewChild(CreateCookieComponent, { static: false })
+  createCookieComponent: CreateCookieComponent;
 
   constructor(
     private cookiesService: CookiesService,
     private store: Store<ReducersModel>,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private timeStampToDatePipe: TimeStampToDatePipe
   ) {}
 
   ngOnInit() {
     this.store.select(getUserStatus).subscribe(data => {
       this.domains = data.domains;
       this.domain = data.domains[0];
-      this.onLoadgroups(data.domains[0]);
+      this.onFetchGroups(data.domains[0]);
     });
+  }
+
+  onSelectCookie(cookie) {
+    this.createCookieComponent.createCookieForm.setValue({
+      name: cookie.name,
+      expDate: this.timeStampToDatePipe.transform(cookie.expDate),
+      provider: cookie.provider
+    });
+    this.activeCookieForm = true;
+    this.createCookieComponent.editMode = true;
+    this.cid = cookie.cid;
+  }
+
+  onSelectGroup(group) {
+    this.group = group;
+    this.createCookieComponent.editMode = false;
+    this.onFetchCookies(this.domain.did, group.gid);
+    this.activeCookieForm = false;
+  }
+
+  onOpenCookieForm() {
+    this.createCookieComponent.editMode = false;
+    this.activeCookieForm = true;
   }
 
   onRegisterGroup($event) {
@@ -42,24 +75,61 @@ export class CookiesComponent implements OnInit {
       $event,
       {
         did: this.domain.did,
-        domainActive: true
+        active: true
       },
       {
-        gid: "mUi3hXVkM4vPjtNHj0aa",
-        groupActive: true
+        gid: this.group.gid,
+        active: true
       }
     );
   }
 
+  onFetchCookies(did, gid) {
+    if (did) {
+      this.cookiesObservable = this.cookiesService.fetchCookies(did, gid);
+    }
+  }
+
+  onUpdateCookie(cookie) {
+    this.cookiesService.updateCookie({
+      ...cookie,
+      group: this.group,
+      domain: this.domain,
+      active: true,
+      cid: this.cid
+    });
+    this.activeCookieForm = false;
+  }
+
+  onDeleteCookie(cookie) {
+    this.cookiesService.updateCookie({
+      ...cookie,
+      group: this.group,
+      domain: this.domain,
+      active: false,
+      cid: this.cid
+    });
+    this.activeCookieForm = false;
+  }
+
   onUpdateGroup(data, group) {
-    this.groupService.updateGroup(group, { type: "name", value: data.value });
+    this.groupService.updateGroup({
+      ...group,
+      domain: this.domain,
+      active: true,
+      name: data.value
+    });
   }
 
   onDeleteGroup(group) {
-    this.groupService.updateGroup(group, { type: "isActive", value: false });
+    this.groupService.updateGroup({
+      ...group,
+      domain: this.domain,
+      active: false
+    });
   }
 
-  onLoadgroups(domain) {
+  onFetchGroups(domain) {
     if (domain) {
       this.groupObservable = this.groupService.fetchGroups(domain.did);
     }
