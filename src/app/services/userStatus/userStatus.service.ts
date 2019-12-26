@@ -71,11 +71,13 @@ export class UserStatusService {
         ref.where("uid", "==", uid)
       );
       return this.userStatusCollection.snapshotChanges().pipe(
-        map(res => {
-          const userStatus = res[0].payload.doc.data();
-          this.store.dispatch(new SetUserStatus(userStatus));
-          return userStatus;
-        })
+        map(
+          (res): UserStatus => {
+            const userStatus = res[0].payload.doc.data();
+            this.store.dispatch(new SetUserStatus(userStatus));
+            return userStatus;
+          }
+        )
       );
     });
   }

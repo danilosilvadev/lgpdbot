@@ -2,8 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { ReducersModel } from "./models/reducers.model";
-import { changeMessageToSpanish, changeMessageToEnglish } from "./ngrx/actions";
-import { getMessage, getUserStatus } from "./ngrx/selectors";
+import { getUserStatus } from "./ngrx/selectors";
 import { UserStatusService } from "./services";
 import { UserStatus } from "./models/user.model";
 
@@ -14,7 +13,6 @@ import { UserStatus } from "./models/user.model";
 })
 export class AppComponent implements OnInit {
   title = "ngrxFirestore";
-  message$: Observable<string>;
   userStatusObservable: Observable<UserStatus>;
   userStatus;
   constructor(
@@ -30,14 +28,5 @@ export class AppComponent implements OnInit {
         });
       }
     });
-    this.message$ = this.store.select(getMessage);
-  }
-
-  spanishMessage() {
-    this.store.dispatch(new changeMessageToSpanish());
-  }
-
-  englishMessage() {
-    this.store.dispatch(new changeMessageToEnglish());
   }
 }

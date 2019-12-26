@@ -17,5 +17,8 @@ export class CreateGroupComponent implements OnInit {
 
   onSubmit() {
     this.registerGroup.emit(this.group);
+    this.group = {
+      name: ""
+    };
   }
 }

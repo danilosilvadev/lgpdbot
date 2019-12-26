@@ -1,24 +1,27 @@
 export const initialState = {
-  message: "holla mundo",
   loading: false,
   user: {
-    status: {
-      name: "",
-      email: "",
-      isVerified: false,
-      uid: "",
-      domains: []
-    }
+    name: "",
+    email: "",
+    isVerified: false,
+    uid: "",
+    domains: []
   },
   cookies: [
     {
-      cookieId: "",
-      cookieName: "",
-      expirationDate: null,
-      domainName: "",
+      cid: "",
+      name: "",
+      expDate: null,
+      active: false,
+      domain: {
+        name: "",
+        active: false,
+        did: ""
+      },
       group: {
-        id: "",
-        name: ""
+        gid: "",
+        name: "",
+        active: false
       },
       provider: ""
     }

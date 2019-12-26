@@ -40,7 +40,7 @@ export class DomainFormComponent implements OnInit {
       did: this.editDomain.did,
       name: this.editDomain.name,
       url: this.editDomain.url,
-      isValidated: this.editDomain.isValidated,
+      active: this.editDomain.active,
     })
      
   }  
