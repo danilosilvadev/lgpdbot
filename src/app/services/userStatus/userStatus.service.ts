@@ -43,8 +43,19 @@ export class UserStatusService {
       .collection("users")
       .doc(uid)
       .update({
-        domains: [...domains, { did: domain.url, isValidated: false, ...domain }]
+        domains: [...domains, { did: Math.floor(Date.now() / 1000), active: false, ...domain }]
       })
+  }
+
+  updateDomain(
+    domains: Array<Domain>,
+    uid: string
+    ) {
+      this.afDb
+      .collection('users')
+      .doc(uid)
+      .update({"domains": [...domains]})
+   
   }
 
   registerUserStatus(currentUser) {
@@ -73,6 +84,7 @@ export class UserStatusService {
       return this.userStatusCollection.snapshotChanges().pipe(
         map(
           (res): UserStatus => {
+            
             const userStatus = res[0].payload.doc.data();
             this.store.dispatch(new SetUserStatus(userStatus));
             return userStatus;

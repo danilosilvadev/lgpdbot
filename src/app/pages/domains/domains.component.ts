@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { ReducersModel } from 'src/app/models/reducers.model';
 import { getUserStatus } from 'src/app/ngrx/selectors';
 import { Observable } from 'rxjs';
+import { DomainFormComponent } from 'src/app/components/forms/domain-form/domain-form.component';
 
 @Component({
   selector: 'app-domains',
@@ -12,12 +13,13 @@ import { Observable } from 'rxjs';
   styleUrls: ['./domains.component.scss']
 })
 export class DomainsComponent implements OnInit {
-  uid = ''
+  uid = '';
+  did: string;
   domains: Domain[]
   domainsObservable: Observable<Domain[]>;
-  isEditing: boolean = false;
+  editMode: boolean = false;
   editDomain: Domain;
-  @ViewChild('domainName', {static: false}) domainName: ElementRef;
+  @ViewChild(DomainFormComponent, {static: false}) domainFormComponent: DomainFormComponent;
 
   constructor(
     private store: Store<ReducersModel>,
@@ -35,17 +37,49 @@ export class DomainsComponent implements OnInit {
     });
   }
 
-  onRegisterDomain(data) {
-    
-    this.userStatusService.registerDomain(data, this.uid, this.domains)
-  }
-  onUpdateDomain(data) {
-    //call service
+  onSelectDomain(domain) {
+    this.editDomain = domain;
+    this.editMode = true;
+    this.did = domain.did;
+
+    this.domainFormComponent.domainFormGroup.setValue({
+      did: domain.did,
+      active: domain.active,
+      name: domain.name,
+      url: domain.url
+    });
+    this.domainFormComponent.editMode = true;
+    this.did = domain.cid;
   }
 
-  onPopulateForm(domain) {
-    this.editDomain = domain;
-    this.isEditing = true;
+  onRegisterDomain(data) {
+    this.userStatusService.registerDomain(data, this.uid, this.domains)
+  }
+
+  onUpdateDomain(domain) {
+
+    const filteredDomain = this.domains.filter(item => item.did !== domain.did)
+
+    const concatenatedDomain = filteredDomain.concat({
+      did: domain.did,
+      active: domain.active,
+      name: domain.name,
+      url: domain.url,
+    });
+    this.userStatusService.updateDomain(concatenatedDomain, this.uid)
+  }
+
+
+  onDeleteDomain(domain) {
+    const filteredDomain = this.domains.filter(item => item.did !== domain.did)
+
+    const concatenatedDomain = filteredDomain.concat({
+      did: domain.did,
+      active: !domain.active,
+      name: domain.name,
+      url: domain.url,
+    });
+    this.userStatusService.updateDomain(concatenatedDomain, this.uid)
   }
 
 }

@@ -1,9 +1,7 @@
 <app-domain-form
     (registerDomain)="onRegisterDomain($event)"
-    (updateDomain)="onRegisterDomain($event)"
-
-    [editDomain]="editDomain"
-    [isEditing]="isEditing"
+    (updateDomain)="onUpdateDomain($event)"
+    #domainFormGroup
 ></app-domain-form>
 
 <div class="domains">
@@ -13,7 +11,7 @@
             <tr>
                 <td>Nome</td>
                 <td>Url</td>
-                <td>Validado</td>
+                <td>Ativo</td>
                 <td>Ações</td>
             </tr>
         </thead>
@@ -27,12 +25,15 @@
                 <td>
                     <a target="_blank" href="{{ item.url }}"> {{ item.url }} </a>
                 </td>
-                <td [ngStyle]="{'color': item.isValidated ? '#508102' : '#333' }">
-                    {{ item.isValidated ? "Sim" : "Não" }}
+                <td [ngStyle]="{'color': item.active ? '#508102' : '#333' }">
+                    {{ item.active ? "Sim" : "Não" }}
                 </td>
                 <td>
-                    <button (click)="onPopulateForm(item)">
+                    <button (click)="onSelectDomain(item)">
                         Editar
+                    </button>
+                    <button (click)="onDeleteDomain(item)">
+                        {{ item.active ? "Desativar" : "Ativar" }} 
                     </button>
                 </td>
             </tr>
