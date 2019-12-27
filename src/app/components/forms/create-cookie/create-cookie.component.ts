@@ -26,7 +26,7 @@ export class CreateCookieComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.createCookieForm.value["expDate"]);
+
     if (this.editMode) {
       this.updateCookie.emit({
         ...this.createCookieForm.value,

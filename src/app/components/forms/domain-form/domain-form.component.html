@@ -1,0 +1,34 @@
+<form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="domainFormGroup"
+    [ngStyle]="{
+        'display': 'flex'
+    }"
+>   
+    <input type="hidden" formControlName='did' value="{{did}}" />
+    <input type="hidden" formControlName='active' value="{{a}}" />
+
+    <div>
+        <label for='domainName'>Nome</label>
+        <input 
+            type='text'
+            formControlName='name'
+        />
+    </div>
+    <div>
+        <label for='domainUrl'>Url</label>
+        <input 
+            type='text'
+            formControlName='url'
+        />
+    </div>
+    <div>
+        <input 
+            type='submit' 
+            [disabled]="!domainFormGroup.valid  || !domainFormGroup.get('name').touched || !domainFormGroup.get('url').touched" 
+            [value]="editMode ? 'Salvar': 'Cadastrar'"
+        />
+    </div>
+  
+    
+</form>

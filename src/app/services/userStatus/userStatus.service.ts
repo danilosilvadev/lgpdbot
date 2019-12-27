@@ -10,7 +10,7 @@ import { Store } from "@ngrx/store";
 import { ReducersModel } from "src/app/models/reducers.model";
 import { getUIDFromIDB } from "../../utils/idb";
 import { FIREBASE_KEY } from "../../keys";
-import { Observable } from "rxjs";
+import { Domain } from 'src/app/models/domain.model';
 
 @Injectable({
   providedIn: "root"
@@ -31,6 +31,17 @@ export class UserStatusService {
       uid: currentUser.uid,
       domains: []
     };
+  }
+
+  updateDomain(
+    domains: Array<Domain>,
+    uid: string
+    ) {
+      this.afDb
+      .collection('users')
+      .doc(uid)
+      .update({"domains": [...domains]})
+   
   }
 
   registerUserStatus(currentUser) {
@@ -59,6 +70,7 @@ export class UserStatusService {
       return this.userStatusCollection.snapshotChanges().pipe(
         map(
           (res): UserStatus => {
+            
             const userStatus = res[0].payload.doc.data();
             this.store.dispatch(new SetUserStatus(userStatus));
             return userStatus;
