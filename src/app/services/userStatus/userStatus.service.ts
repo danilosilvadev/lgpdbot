@@ -33,20 +33,6 @@ export class UserStatusService {
     };
   }
 
-  registerDomain(
-    domain: { name: string, url: string }, 
-    uid: string, 
-    domains: Array<Domain>
-  ) {
-
-    this.afDb
-      .collection("users")
-      .doc(uid)
-      .update({
-        domains: [...domains, { did: Math.floor(Date.now() / 1000), active: false, ...domain }]
-      })
-  }
-
   updateDomain(
     domains: Array<Domain>,
     uid: string
