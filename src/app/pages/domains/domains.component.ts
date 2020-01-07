@@ -53,14 +53,15 @@ export class DomainsComponent implements OnInit {
   }
 
   onRegisterDomain(data) {
-    const newDomain = {
-      did: Math.floor(Date.now() / 1000), 
-      active: false,
+    const newDomain: Domain[] = [{
+      did: `${Math.floor(Date.now() / 1000)}`, 
       name: data.name,
       url: data.url,
-    }
+      active: false,
+    }]
 
-    const addedDomain = [this.domains, ...newDomain];
+    const addedDomain: Domain[] = [...this.domains, ...newDomain];
+
     this.userStatusService.updateDomain(addedDomain, this.uid)
   }
 
