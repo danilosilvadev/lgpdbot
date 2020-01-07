@@ -1,0 +1,16 @@
+.header {
+    display: grid;
+    grid-template-areas: 
+        "topnav topnav addcookie addcookie gotoaccount";
+
+    .top-nav {
+        grid-area: topnav;
+    }
+    .add-cookie {
+        grid-area: addcookie;
+    }
+
+    .go-to-account {
+        grid-area: gotoaccount;
+    }
+}

@@ -25,6 +25,7 @@ import { CreateCookieComponent } from "./components/forms/create-cookie/create-c
 import { CreateGroupComponent } from './components/forms/create-group/create-group.component';
 import { DomainFormComponent } from './components/forms/domain-form/domain-form.component';
 import { TimeStampToDatePipe } from './utils/pipes/time-stamp-to-date.pipe';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { TimeStampToDatePipe } from './utils/pipes/time-stamp-to-date.pipe';
     CreateCookieComponent,
     CreateGroupComponent,
     DomainFormComponent,
-    TimeStampToDatePipe
+    TimeStampToDatePipe,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
