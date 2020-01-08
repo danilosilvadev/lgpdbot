@@ -3,14 +3,37 @@
     grid-template-areas: 
         "topnav topnav addcookie addcookie gotoaccount";
 
-    .top-nav {
+    .topNav {
         grid-area: topnav;
     }
-    .add-cookie {
+    .addCookie {
         grid-area: addcookie;
     }
 
-    .go-to-account {
+    .goToAccount {
+        display: grid;
         grid-area: gotoaccount;
+        justify-items: end;
+
     }
+}
+
+.changeDomainButton {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 32px;
+    width: 224px;
+}
+
+.addCookieButton {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 32px;
+    width: 224px;
+}
+
+.accountButton {
+    
 }

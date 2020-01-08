@@ -1,12 +1,22 @@
-<div>
+<div class="pageWrapper">
     
     <div class="grid-container">
         <app-header class="header">
             <h6>{{ userStatusObservable | async | depth: "name" }}</h6>
         </app-header>
-        <aside class="aside">Aside</aside>
+        <aside class="aside">
+
+            <ul class="mainNav">
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Cookies</a></li>
+                <li><a href="#">Data mapping</a></li>
+            </ul>
+        </aside>
         <main class="main">
             <router-outlet></router-outlet>
+            <div class="card">
+                Card
+            </div>
         </main>
         <footer class="footer">Footer</footer>
     </div>

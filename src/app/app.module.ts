@@ -8,6 +8,7 @@ import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AuthService } from "./services";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -55,7 +56,8 @@ import { HeaderComponent } from './components/header/header.component';
       logOnly: environment.production // Restrict extension to log-only mode
     }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FontAwesomeModule
   ],
   providers: [
     AngularFireModule,

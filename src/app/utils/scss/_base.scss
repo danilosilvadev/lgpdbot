@@ -1,3 +1,36 @@
-body {
+@import '~normalize.css';
+@import './colors';
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+html, body {
     background-color: $c-bg-primary;
+    font-family: Roboto;
+}
+
+button {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: $c-primary;
+    text-decoration: none;
+}
+svg {
+    color: $c-primary;
+}
+
+button {
+    background-color: transparent;
+    border: none;
 }
