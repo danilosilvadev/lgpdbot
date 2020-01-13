@@ -1,0 +1,10 @@
+@import '../../../utils/scss/colors';
+
+.loginButton {
+    background-color: $c-primary;
+    border: none;
+    border-radius: 0.3rem;
+    color: $c-white;
+    padding: 1.6rem 3.2rem;
+    width: 100%;
+}

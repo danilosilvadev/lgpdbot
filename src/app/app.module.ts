@@ -27,6 +27,7 @@ import { CreateGroupComponent } from './components/forms/create-group/create-gro
 import { DomainFormComponent } from './components/forms/domain-form/domain-form.component';
 import { TimeStampToDatePipe } from './utils/pipes/time-stamp-to-date.pipe';
 import { HeaderComponent } from './components/header/header.component';
+import { DefaultPageLayoutComponent } from './components/layout/default-page-layout/default-page-layout.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { HeaderComponent } from './components/header/header.component';
     CreateGroupComponent,
     DomainFormComponent,
     TimeStampToDatePipe,
-    HeaderComponent
+    HeaderComponent,
+    DefaultPageLayoutComponent
   ],
   imports: [
     BrowserModule,

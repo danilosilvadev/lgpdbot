@@ -1,13 +1,58 @@
 <form
   #createAccountForm="ngForm"
   (ngSubmit)="onSubmit()"
-  class="f f-column w-30"
+  class="createAccountForm"
 >
-  <label>E-mail</label>
-  <input type="e-mail" required [(ngModel)]="user.email" name="email" />
-  <label>Senha</label>
-  <input type="password" required [(ngModel)]="user.password" name="password" />
-  <label>Nome</label>
-  <input type="text" name="user-name" required [(ngModel)]="user.name" />
-  <input type="submit" [disabled]="!createAccountForm.form.valid" />
+    <h1 class="login-title">Criar conta</h1>
+    <div class="field">
+        <span class="iconContainer">
+            <fa-icon [styles]="{'color': '#ccc'}" [icon]="faAt" size="sm"></fa-icon>
+        </span>
+        <input 
+          type="e-mail" 
+          class="input" 
+          required 
+          [(ngModel)]="user.email" 
+          name="email" 
+          placeholder="E-mail" 
+        />
+    </div>
+
+    <div class="field">
+        <span class="iconContainer">
+          <fa-icon [styles]="{'color': '#ccc'}" [icon]="faUser" size="sm"></fa-icon>
+        </span>
+        <input 
+            type="text" 
+            class="input"
+            name="user-name" 
+            required 
+            [(ngModel)]="user.name" 
+            placeholder="Usuário"
+        />
+    </div>
+
+    <div class="field">
+      <span class="iconContainer">
+        <fa-icon [styles]="{'color': '#ccc'}" [icon]="faKey" size="sm"></fa-icon>
+      </span>
+       <input 
+              type="password" 
+              class="input"
+              required 
+              [(ngModel)]="user.password" 
+              name="password" 
+              placeholder="Senha"
+        />
+    </div>
+
+    <div class="field">
+        <input 
+            type="submit" 
+            [disabled]="!createAccountForm.form.valid"
+            class="loginButton"
+        />
+    </div>
+
+
 </form>

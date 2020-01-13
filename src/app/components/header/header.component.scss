@@ -1,37 +1,5 @@
 .header {
-    display: grid;
-    grid-template-areas: 
-        "topnav topnav addcookie addcookie gotoaccount";
 
-    .topNav {
-        grid-area: topnav;
-    }
-    .addCookie {
-        grid-area: addcookie;
-    }
-
-    .goToAccount {
-        display: grid;
-        grid-area: gotoaccount;
-        justify-items: end;
-
-    }
-}
-
-.changeDomainButton {
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 32px;
-    width: 224px;
-}
-
-.addCookieButton {
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 32px;
-    width: 224px;
 }
 
 .accountButton {

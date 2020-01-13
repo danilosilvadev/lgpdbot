@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { faUser, faKey } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-login-form",
@@ -6,6 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
   styleUrls: ["./login-form.component.scss"]
 })
 export class LoginFormComponent implements OnInit {
+  faUser = faUser;
+  faKey = faKey;
   user: Object = {};
   @Output() loginUser = new EventEmitter();
 

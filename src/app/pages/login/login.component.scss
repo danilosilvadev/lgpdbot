@@ -1,0 +1,101 @@
+@import '../../utils/scss/colors';
+@import '../../utils/scss/mixins/all';
+
+.wrapper {
+    background-color: $c-white;
+    display: grid;
+    grid-template-areas: "left left right right right right";
+    grid-template-rows: 100vh;
+
+
+    // @include mediaLaptop() {
+    //     width: 85%;
+    // }
+}
+
+.left {
+    display: grid;
+    grid-area: left;
+    margin: 0 auto;
+    align-items: center;
+    // width: 80%;
+}
+
+.right {
+    background-image: url('../../../assets/loginBanner.jpeg');
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    grid-area: right;
+    padding: 5.2rem;
+    align-items: end;
+
+    .title, 
+    .subtitle {
+        color: $c-white;
+            
+    }
+    .title {
+        font-size: 3rem;
+        font-weight: 400;
+
+    }
+    .subtitle {
+        font: {
+            size: 1.8rem;
+            weight: 300;
+        }
+        
+    }
+}
+
+.login-title {
+    color: $c-title-primary
+}
+
+.headings {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 0.3rem;
+    padding: 1.6rem;
+    width: 50%;
+}
+
+.googleSigninButton {
+    align-items: center;
+    background-color: $c-white;
+    border: 0.1rem solid $c-gray-ccc;
+    border-radius: 0.3rem;
+    display: flex;
+    padding: 1.6rem 3.2rem;
+    height: 5rem;
+    width: 100%;
+
+    .ng-fa-icon {
+        margin-right: 1.2rem;
+    }
+}
+
+
+.createAccountContainer {
+    margin: 1.2rem 0;
+}
+
+.createAccountButton {
+    color: $c-primary;
+}
+
+.signinOrContainer {
+    align-items: center;
+    display: flex;
+    height: 4rem;
+    justify-content: center;
+}
+
+.redirectToSigninContainer {
+    align-self: flex-start;
+    display: flex;
+
+    .button {
+        color: $c-primary;
+    }
+}

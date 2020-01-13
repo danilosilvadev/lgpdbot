@@ -1,10 +1,13 @@
 @import "colors";
 
-@import "constants";
-@import "spacing";
-@import "flexbox/index";
+// @import "constants";
+// @import "spacing";
+// @import "flexbox/index";
+
 @import "snippets/index";
 @import "directives/index";
 
+@import './mixins/all';
 @import "base";
 @import "grid";
+@import './form';

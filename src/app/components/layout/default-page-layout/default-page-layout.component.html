@@ -1,0 +1,45 @@
+<div class="pageWrapper">
+    
+    <div class="grid-container">
+
+        <!-- <app-header class="header">
+            <h6>{{ userStatusObservable | async | depth: "name" }}</h6>
+        </app-header> -->
+        <div class="topNav">
+            <button class="changeDomainButton">
+                Facebook <fa-icon [icon]="faChevronRight"></fa-icon>
+            </button>
+        </div>
+        <div class="addCookie">
+            <button class="addCookieButton">
+                <span>Adicionar cookie</span>
+                <fa-icon [icon]="faPlus"></fa-icon>
+            </button>
+        </div>
+        <div class="goToAccount">
+            <button class="accountButton">
+                <fa-icon [icon]="faUserCircle" size="lg"></fa-icon>
+            </button>
+        </div>
+
+        <aside class="aside">
+
+            <ul class="mainNav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/cookies">Cookies</a></li>
+                <li><a href="#">Data mapping</a></li>
+                <li><a href="Login">Login</a></li>
+            </ul>
+        </aside>
+        <main class="main">
+            
+            <div class="card">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+        <footer class="footer">Footer</footer>
+    </div>
+    
+    
+  </div>
