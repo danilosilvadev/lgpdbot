@@ -1,9 +1,9 @@
 <form
   #createAccountForm="ngForm"
   (ngSubmit)="onSubmit()"
-  class="createAccountForm"
+  class="createAccountForm mt-10"
 >
-    <h1 class="login-title">Criar conta</h1>
+    <h1 class="title is-2 mb-10">Criar conta</h1>
     <div class="field">
         <span class="iconContainer">
             <fa-icon [styles]="{'color': '#ccc'}" [icon]="faAt" size="sm"></fa-icon>
@@ -50,7 +50,9 @@
         <input 
             type="submit" 
             [disabled]="!createAccountForm.form.valid"
-            class="loginButton"
+            ng-class="{'disabled': !createAccountForm.form.valid}"
+            class="button primary"
+            value="Cadastrar"
         />
     </div>
 

@@ -1,5 +1,19 @@
 .button {
-    &--text {
-        
+    background-color: transparent;
+    border: none;
+    border-radius: 0.3rem;
+    color: $c-gray-333;
+    padding: 1.6rem 3.2rem;
+    width: 100%;
+
+    &.primary {
+        background-color: $c-primary;
+        color: $c-white
+    }
+
+    &.link {
+        color: $c-primary;
+        padding: 0;
+        width: auto;
     }
 }

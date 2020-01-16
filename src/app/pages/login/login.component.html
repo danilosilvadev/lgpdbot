@@ -4,16 +4,7 @@
         *ngIf="loginMode; else createAccountContainer"
         class="signinContainer"  
     >
-      <h1 class="login-title">Login</h1>
-        <div class="createAccountContainer">
-            Você tem conta?
-            <button 
-              (click)="toggleLogingMode()"
-              class="createAccountButton"
-            >
-              Criar uma
-            </button>
-        </div>
+      <h1 class="title is-2 mb-10">Login</h1>
         <app-login-form (loginUser)="onLoginUser($event)"></app-login-form>
         
         <div class="signinOrContainer">
@@ -26,6 +17,16 @@
             <span class="googleSigninButton__label">Logar com Google</span>
           </button>
         </div>
+
+        <div class="mt-10">
+            Ainda não tem conta?
+            <button 
+              (click)="toggleLogingMode()"
+              class="createAccountButton button link"
+            >
+              Criar uma
+            </button>
+        </div>
     </div>
     
     <ng-template #createAccountContainer>
@@ -34,9 +35,9 @@
       ></app-create-acount-form>
 
       <div class="redirectToSigninContainer">
-        <p>Já tem uma conta?</p>
+        <span class="mr-1">Já tem uma conta?</span>
         <button
-            class="button button--link" 
+            class="button link" 
             (click)="toggleLogingMode()">
             Login
         </button>
@@ -47,8 +48,8 @@
 
   <section class="right">
       <div class="headings">
-          <h1 class="title"> LGPD Bot</h1>
-          <p class="subtitle">A melhor forma de gerenciar cookies</p>
+          <h2 class="title is-3"> LGPD Bot</h2>
+          <p class="subtitle is-4">A melhor forma de gerenciar cookies</p>
       </div>
   </section>
   
