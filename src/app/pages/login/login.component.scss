@@ -1,16 +1,11 @@
-@import '../../utils/scss/colors';
-@import '../../utils/scss/mixins/all';
+@import '../../utils/scss/constants/colors';
+@import '../../utils/scss/mixins/index';
 
 .wrapper {
     background-color: $c-white;
     display: grid;
     grid-template-areas: "left left right right right right";
     grid-template-rows: 100vh;
-
-
-    // @include mediaLaptop() {
-    //     width: 85%;
-    // }
 }
 
 .left {
@@ -60,9 +55,7 @@
     height: 5rem;
     width: 100%;
 
-    .ng-fa-icon {
-        margin-right: 1.2rem;
-    }
+
 }
 
 .signinOrContainer {

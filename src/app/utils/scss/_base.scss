@@ -1,10 +1,9 @@
 @import '~normalize.css';
-@import './colors';
 
-*, *:before, *:after {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+*, 
+*:before, 
+*:after {
+    box-sizing: border-box;
 }
 
 html, body {
@@ -15,6 +14,7 @@ html, body {
 html {
     font-size: 62.5%;  /* =10px */
 }
+
 
 body {
     font-size: 1.4rem;
@@ -46,19 +46,26 @@ button {
     border: none;
 }
 
+button, 
+input, 
+select, 
+textarea {
+    margin: 0;
+}
+
 input {
     &:focus {
-        outline: 1px solid $c-gray-aaa;
+        outline: 0.1rem solid $c-gray-aaa;
         // outline-offset: 0;
     }
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow:0 0 0 50px white inset; /* Change the color to your own background color */
-    -webkit-text-fill-color: #333;
+    -webkit-box-shadow:0 0 0 5rem $c-white inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: $c-gray-333;
 }
 
 input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0 50px white inset;/*your box-shadow*/
-    -webkit-text-fill-color: #333;
+    -webkit-box-shadow: 0 0 0 5rem $c-white inset;/*your box-shadow*/
+    -webkit-text-fill-color: $c-gray-333;
 } 

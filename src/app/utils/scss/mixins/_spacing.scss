@@ -1,15 +1,7 @@
 /*
-@author: tiagosatur
-@github: @tiagosatur
+    @author: tiagosatur
+    @github: @tiagosatur
 */
-
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px
-) !default;
 
 
 /*
@@ -18,36 +10,91 @@ $grid-breakpoints: (
 
   I. e.:
 
-  .bf-m-1 {
+  .m-1 {
     margin: 0.5rem !important;
   }
 
-  .bf-m-bottom-4 {
+  .mb-4 {
     margin-bottom: 2rem !important;
   }
 
-  .bf-m-top-md-2 {
+  .mt-md-2 {
      margin-top: 1rem !important;
    }
 
-  .bf-p-7 {
+  .p-7 {
     padding: 3.5rem !important;
   }
 
-  .bf-p-top-7 {
+  .pt-7 {
     padding-top: 3.5rem !important;
   }
 
-  .bf-p-left-14 {
+  .pl-14 {
     padding-left: 7rem !important;
   }
-  .bf-p-y-xl-16 {
+  .py-xl-16 {
     padding: 8rem 0 !important;
   }
 
   Author: @tiagosatur
 
 */
+
+
+$sides: (
+    "": "",
+    "t": "top",
+    "b": "bottom",
+    "l": "left",
+    "r": "right",
+);
+
+@each $breakName, $breakValue in $breakpoints {
+    $spacing: 0.5;
+    @each $sideName, $sideValue in $sides {
+        @for $i from 0 through 10 {
+        
+            $property: if($sideName == '', '', -#{$sideValue});
+            $space: $i * 2;
+            $selector: '';
+
+            @if $breakName != "" {
+                $selector: #{$sideName}-#{$breakName}-#{$i};
+            } @else {
+                $selector: #{$sideName}-#{$i};
+            }
+
+            @if $breakName != "" {
+                @media (min-width: $breakValue) {
+                .m#{$selector} {
+                    margin#{$property}: #{$space}rem;
+                }
+        
+                .p#{$selector} {
+                    padding#{$property}: #{$space}rem;
+                }
+                }
+            } @else {
+                .m#{$selector} {
+                margin#{$property}: #{$space}rem;
+                }
+
+                .p#{$selector} {
+                padding#{$property}: #{$space}rem;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
 
 /*
 @each $breakpoint, $value in ($grid-breakpoints) {
@@ -90,7 +137,6 @@ $grid-breakpoints: (
             #{$prop}: #{$i * $spacing}rem !important;
           }
 
-
           @each $side in (top, bottom, left, right, x, y) {
             @if($side == x) {
               .#{$abbrev}-#{$side}-#{$breakpoint}-#{$i} {
@@ -113,61 +159,4 @@ $grid-breakpoints: (
     }
   }
 }
-
-
-
 */
-
-$sides: (
-    "": "",
-    "t": "top",
-    "b": "bottom",
-    "l": "left",
-    "r": "right",
-);
-
-$breakpoints: (
-    "": "",
-    "xs": 576px,
-    "sm": 768px,
-    "md": 992px,
-    "lg": 1200px,
-);
-
-@each $breakName, $breakValue in $breakpoints {
-    $spacing: 0.5;
-    @each $sideName, $sideValue in $sides {
-        @for $i from 0 through 10 {
-        
-            $property: if($sideName == '', '', -#{$sideValue});
-            $space: $i * 2;
-            $selector: '';
-
-            @if $breakName != "" {
-                $selector: #{$sideName}-#{$breakName}-#{$i};
-            } @else {
-                $selector: #{$sideName}-#{$i};
-            }
-
-            @if $breakName != "" {
-                @media (min-width: $breakValue) {
-                .m#{$selector} {
-                    margin#{$property}: #{$space}rem;
-                }
-        
-                .p#{$selector} {
-                    padding#{$property}: #{$space}rem;
-                }
-                }
-            } @else {
-                .m#{$selector} {
-                margin#{$property}: #{$space}rem;
-                }
-
-                .p#{$selector} {
-                padding#{$property}: #{$space}rem;
-                }
-            }
-        }
-    }
-}

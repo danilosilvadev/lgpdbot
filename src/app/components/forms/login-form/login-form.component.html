@@ -1,37 +1,45 @@
 <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="field">
-    <span class="iconContainer">
-      <fa-icon [styles]="{'color': '#ccc'}" [icon]="faUser" size="sm"></fa-icon>
-    </span>
-    <input 
-        class="input" 
-        type="e-mail" 
-        required 
-        [(ngModel)]="user.email" 
-        name="email" 
-        placeholder="Usuário"
-    />
+
+    <div class="control has-icon-left">
+        <span class="icon">
+          <fa-icon [styles]="{'color': '#ccc'}" [icon]="faUser" size="sm"></fa-icon>
+        </span>
+        
+        <input 
+            class="input" 
+            type="e-mail" 
+            required 
+            [(ngModel)]="user.email" 
+            name="email" 
+            placeholder="Usuário"
+        />
+    </div>
+    
   </div>
 
   <div class="field">
-    <span class="iconContainer">
-      <fa-icon [styles]="{'color': '#ccc'}" [icon]="faKey" size="sm"></fa-icon>
-    </span>
-    <input 
-        class="input" 
-        type="password" 
-        required 
-        [(ngModel)]="user.password" 
-        name="password"
-        placeholder="Senha"
-    />
 
+      <div class="control has-icon-left">
+          <span class="icon">
+            <fa-icon [styles]="{'color': '#ccc'}" [icon]="faKey" size="sm"></fa-icon>
+          </span>
+
+          <input 
+            class="input" 
+            type="password" 
+            required 
+            [(ngModel)]="user.password" 
+            name="password"
+            placeholder="Senha"
+          />
+      </div>
   </div>
   <div class="field">
     <input 
         type="submit" 
         [disabled]="!loginForm.form.valid" 
-        class="loginButton button primary"
+        class="loginButton btn primary w-100"
         value="Entrar"
     />
   </div>

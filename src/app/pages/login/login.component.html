@@ -12,17 +12,20 @@
         </div>
 
         <div class="googleSigninContainer">
-          <button class="googleSigninButton" (click)="googleSignup()">
-            <fa-icon [icon]="faGoogle" size="lg"  [styles]="{'color': '#ccc'}"></fa-icon>
-            <span class="googleSigninButton__label">Logar com Google</span>
-          </button>
+            <button class="btn bordered w-100" (click)="googleSignup()">
+              <span class="btn-icon">
+                <fa-icon [icon]="faGoogle" size="lg"  [styles]="{'color': '#ccc'}"></fa-icon>
+              </span>
+              
+              <span class="btn-label">Logar com Google</span>
+            </button>
         </div>
 
         <div class="mt-10">
             Ainda não tem conta?
             <button 
               (click)="toggleLogingMode()"
-              class="createAccountButton button link"
+              class="createAccountButton btn link"
             >
               Criar uma
             </button>
@@ -37,7 +40,7 @@
       <div class="redirectToSigninContainer">
         <span class="mr-1">Já tem uma conta?</span>
         <button
-            class="button link" 
+            class="btn link" 
             (click)="toggleLogingMode()">
             Login
         </button>

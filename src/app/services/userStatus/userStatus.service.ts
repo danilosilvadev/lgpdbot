@@ -61,6 +61,7 @@ export class UserStatusService {
     return getUIDFromIDB().then(userId => {
       if (!userId) {
         uid = JSON.parse(localStorage.getItem(FIREBASE_KEY)).uid;
+        
       } else {
         uid = userId;
       }
@@ -70,9 +71,10 @@ export class UserStatusService {
       return this.userStatusCollection.snapshotChanges().pipe(
         map(
           (res): UserStatus => {
-            
             const userStatus = res[0].payload.doc.data();
+            
             this.store.dispatch(new SetUserStatus(userStatus));
+
             return userStatus;
           }
         )

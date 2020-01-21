@@ -5,45 +5,51 @@
 >
     <h1 class="title is-2 mb-10">Criar conta</h1>
     <div class="field">
-        <span class="iconContainer">
-            <fa-icon [styles]="{'color': '#ccc'}" [icon]="faAt" size="sm"></fa-icon>
-        </span>
-        <input 
-          type="e-mail" 
-          class="input" 
-          required 
-          [(ngModel)]="user.email" 
-          name="email" 
-          placeholder="E-mail" 
-        />
-    </div>
-
-    <div class="field">
-        <span class="iconContainer">
-          <fa-icon [styles]="{'color': '#ccc'}" [icon]="faUser" size="sm"></fa-icon>
-        </span>
-        <input 
-            type="text" 
-            class="input"
-            name="user-name" 
-            required 
-            [(ngModel)]="user.name" 
-            placeholder="Usuário"
-        />
-    </div>
-
-    <div class="field">
-      <span class="iconContainer">
-        <fa-icon [styles]="{'color': '#ccc'}" [icon]="faKey" size="sm"></fa-icon>
-      </span>
-       <input 
-              type="password" 
-              class="input"
+        <div class="control has-icon-left">
+            <span class="icon">
+                <fa-icon [styles]="{'color': '#ccc'}" [icon]="faAt" size="sm"></fa-icon>
+            </span>
+            <input 
+              type="e-mail" 
+              class="input" 
               required 
-              [(ngModel)]="user.password" 
-              name="password" 
-              placeholder="Senha"
-        />
+              [(ngModel)]="user.email" 
+              name="email" 
+              placeholder="E-mail" 
+            />
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control has-icon-left">
+            <span class="icon">
+              <fa-icon [styles]="{'color': '#ccc'}" [icon]="faUser" size="sm"></fa-icon>
+            </span>
+            <input 
+                type="text" 
+                class="input"
+                name="user-name" 
+                required 
+                [(ngModel)]="user.name" 
+                placeholder="Usuário"
+            />
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control has-icon-left">
+            <span class="icon">
+                <fa-icon [styles]="{'color': '#ccc'}" [icon]="faKey" size="sm"></fa-icon>
+            </span>
+            <input 
+                type="password" 
+                class="input"
+                required 
+                [(ngModel)]="user.password" 
+                name="password" 
+                placeholder="Senha"
+            />
+        </div>
     </div>
 
     <div class="field">
@@ -51,7 +57,7 @@
             type="submit" 
             [disabled]="!createAccountForm.form.valid"
             ng-class="{'disabled': !createAccountForm.form.valid}"
-            class="button primary"
+            class="btn primary w-100"
             value="Cadastrar"
         />
     </div>

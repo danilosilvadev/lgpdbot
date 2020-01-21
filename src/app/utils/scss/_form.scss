@@ -1,7 +1,25 @@
+.input,
+.select select,
+.textarea {
+    background-color: $c-white;
+    border: 0.1rem solid $c-gray-ccc;
+    border-radius: 0.3rem;
+    flex-grow: 1;
+    color: $c-gray-333 !important;
+    font-size: 1.2rem;
+    padding: 1.8rem 1.6rem;
+    max-width: 100%;
+    width: 100%;
+}
+
 
 .field {
     display: flex;
-    margin: 0 0 1rem 0;
+
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+    
 
     &:last-of-type {
        display: flex;
@@ -9,25 +27,46 @@
     }
 }
 
-.iconContainer {
-    background-color: $c-white;
-    border-bottom: {
-        color: $c-gray-ccc;
-        width: 0.1rem;
-        style: solid;
+.label {
+    color: #363636;
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+.control {
+    position: relative;
+    width: 100%;
+
+    $hasIconPaddingLeft: 3rem;
+
+    &.has-icon-left {
+        .input,
+        .select select {
+            padding-left: $hasIconPaddingLeft;
+        }
     }
-    border-left: {
-        color: $c-gray-ccc;
-        width: 0.1rem;
-        style: solid;
+
+    &.has-icon-right {
+        .input,
+        .select {
+            padding-right: $hasIconPaddingLeft;
+        }
     }
-    border-top: {
-        color: $c-gray-ccc;
-        width: 0.1rem;
-        style: solid;
-    }
-    border-radius: 0.3rem 0 0 0.3rem;
-    padding: 1.2rem;
+}
+
+.icon {
+    align-items: center;
+    color: #dbdbdb;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 3rem;
+    z-index: 4;
 }
 
 .icon .fa {
@@ -36,12 +75,7 @@
     }
 }
 
-.input {
-    background-color: $c-white;
-    border: 0.1rem solid $c-gray-ccc;
-    border-radius: 0 0.3rem 0.3rem 0;
-    flex-grow: 1;
-    color: $c-gray-333 !important;
-    font-size: 1.2rem;
-    padding: 1rem 1.6rem;
+.select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }

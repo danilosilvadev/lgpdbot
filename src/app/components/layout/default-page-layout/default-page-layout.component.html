@@ -2,9 +2,7 @@
     
     <div class="grid-container">
 
-        <!-- <app-header class="header">
-            <h6>{{ userStatusObservable | async | depth: "name" }}</h6>
-        </app-header> -->
+        
         <div class="topNav">
             <button class="changeDomainButton">
                 Facebook <fa-icon [icon]="faChevronRight"></fa-icon>
@@ -12,11 +10,13 @@
         </div>
         <div class="addCookie">
             <button class="addCookieButton">
+
                 <span>Adicionar cookie</span>
                 <fa-icon [icon]="faPlus"></fa-icon>
             </button>
         </div>
-        <div class="goToAccount">
+        <div class="goToAccount flex justifyEnd alignCenter">
+            <span>{{ userStatusObservable | async | depth: "name" }}</span>
             <button class="accountButton">
                 <fa-icon [icon]="faUserCircle" size="lg"></fa-icon>
             </button>
@@ -24,19 +24,35 @@
 
         <aside class="aside">
 
-            <ul class="mainNav">
-                <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/cookies">Cookies</a></li>
-                <li><a href="#">Data mapping</a></li>
-                <li><a href="Login">Login</a></li>
+            <ul class="sidenav">
+                <li>
+                    <a href="/">
+                        <fa-icon [styles]="{'color': iconColor}" [icon]="faHome" size="sm"></fa-icon> 
+                        <span class="sidenav__item_label">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard">
+                        <fa-icon [styles]="{'color': iconColor}" [icon]="faChartLine" size="sm"></fa-icon> 
+                        <span class="sidenav__item_label">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/cookies">
+                        <fa-icon [styles]="{'color': iconColor}" [icon]="faCookieBite" size="sm"></fa-icon> 
+                        <span class="sidenav__item_label">Cookies</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <fa-icon [styles]="{'color': iconColor}" [icon]="faMapSigns" size="sm"></fa-icon> 
+                        <span class="sidenav__item_label">Data mapping</span>
+                    </a>
+                </li>
             </ul>
         </aside>
         <main class="main">
-            
-            <div class="card">
-                <router-outlet></router-outlet>
-            </div>
+            <router-outlet></router-outlet>
         </main>
         <footer class="footer">Footer</footer>
     </div>

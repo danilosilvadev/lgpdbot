@@ -1,0 +1,44 @@
+.btn {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.3rem;
+    color: $c-gray-333;
+    display: inline-flex;
+    justify-content: center;
+    padding: 1.6rem 3.2rem;
+    transition: all .3s;
+
+    &.primary {
+        background-color: $c-primary;
+        color: $c-white;
+
+        &:hover {
+            background-color: darken($c-primary, 5%);
+        }
+    }
+
+    &.secondary {
+        background-color: rgba($c-primary, 0.2);
+        color: darken($c-primary, 5%);
+
+        &:hover {
+            background-color: rgba($c-primary, 0.4);
+        }
+    }
+
+    &.link {
+        color: $c-primary;
+        padding: 0;
+        width: auto;
+    }
+
+    &.bordered {
+        border: 0.1rem solid $c-gray-ccc;
+    }
+
+    .btn-icon {
+        display: inline-block;
+        margin-right: 1.2rem;
+    }
+}

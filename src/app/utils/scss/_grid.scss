@@ -10,20 +10,15 @@
 }
 
 .topNav {
-  // background-color: purple;
   grid-area: topnav;
 }
 .addCookie {
-  // background-color: #1bff00;
   grid-area: addcookie;
 
 }
 
 .goToAccount {
-  // background-color: #0066ff;
-  display: grid;
   grid-area: gotoaccount;
-  justify-items: end;
 }
 
 .main {
