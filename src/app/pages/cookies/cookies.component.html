@@ -1,16 +1,19 @@
-<div class="select">
-  <select class="py-2">  
-      <option
-        value="domain_1"
-        *ngFor="let domain of domains"
-        [value]="domain.did"
-        >{{ domain.name }}</option
-      >
-  </select>
-  <span class="icon has-icon-right">
-    <fa-icon [styles]="{'color': '#ccc'}" [icon]="faChevronRight" size="sm"></fa-icon>
-  </span>
+<div class="control has-icon-left">
+    <div class="select">
+        <select class="py-2">  
+            <option
+              value="domain_1"
+              *ngFor="let domain of domains"
+              [value]="domain.did"
+              >{{ domain.name }}</option
+            >
+        </select>
+    </div>
+    <span class="icon is-left">
+      <fa-icon [styles]="{'color': '#ccc'}" [icon]="faChevronRight" size="sm"></fa-icon>
+    </span>
 </div>
+
 
 
 <section *ngIf="group" class="m-bottom-4">
@@ -67,24 +70,30 @@
               <input type="text" #groupName class="input" />
           </header>
         
-          <div class="buttonGroup flex justifyEnd">
+          <div class="buttons flex justifyEnd">
               <button 
                   (click)="onUpdateGroup(groupName, item)"
-                  class="btn bordered mr-1 p-1"
+                  class="btnIcon bordered small"
               >
-                  <fa-icon [styles]="{'color': '#ccc'}" [icon]="faPen" size="sm"></fa-icon>
+                  <span class="">
+                    <fa-icon [styles]="{'color': '#ccc'}" [icon]="faPen" size="sm"></fa-icon>
+                  </span>
               </button>
               <button 
                   (click)="onDeleteGroup(item)"
-                  class="btn bordered mr-1 p-1"
+                  class="btnIcon bordered small"
               >
+                <span class="">
                   <fa-icon [styles]="{'color': '#ccc'}" [icon]="faTrash" size="sm"></fa-icon>
+                </span>
               </button>
               <button 
                   (click)="onSelectGroup(item)"
-                  class="btn bordered mr-1 p-1"
+                  class="btnIcon bordered small"
               >
-                  Show cookies
+                <span class="">
+                  <fa-icon [styles]="{'color': '#ccc'}" [icon]="faList" size="sm"></fa-icon>
+                </span>
               </button>
           </div>
       </li>

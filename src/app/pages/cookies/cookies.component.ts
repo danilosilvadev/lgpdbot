@@ -14,6 +14,7 @@ import {
   faPen, 
   faTrash,
   faChevronRight,
+  faList,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -35,6 +36,7 @@ export class CookiesComponent implements OnInit {
   faPen = faPen;
   faTrash = faTrash;
   faChevronRight = faChevronRight;
+  faList = faList;
 
   constructor(
     private cookiesService: CookiesService,

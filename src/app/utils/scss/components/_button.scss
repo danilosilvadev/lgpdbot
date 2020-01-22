@@ -1,4 +1,4 @@
-.btn {
+%btnCommon {
     align-items: center;
     background-color: transparent;
     border: none;
@@ -6,8 +6,25 @@
     color: $c-gray-333;
     display: inline-flex;
     justify-content: center;
-    padding: 1.6rem 3.2rem;
     transition: all .3s;
+
+    .icon {
+        position: static;
+    }
+}
+
+%bordered {
+    border: 0.1rem solid $c-gray-ccc;
+}
+
+.btn,
+.btnIcon {
+   @extend %btnCommon;
+}
+
+.btn {
+    @extend %btnCommon;
+    padding: 1.6rem 3.2rem;
 
     &.primary {
         background-color: $c-primary;
@@ -34,11 +51,37 @@
     }
 
     &.bordered {
-        border: 0.1rem solid $c-gray-ccc;
+        @extend %bordered;
     }
 
-    .btn-icon {
-        display: inline-block;
-        margin-right: 1.2rem;
+    &:disabled {
+        opacity: .6;
+    }
+}
+
+.buttons {
+    .btn,
+    .btnIcon {
+        &:not(:last-child){
+            margin-right: .5rem;
+        }
+    }
+}
+
+.btnIcon {
+    &.small {
+        padding: 0.6rem 1.2rem;
+    }
+
+    &.medium {
+        padding: 1rem 1.6rem;
+    }
+
+    &.large {
+        padding: 1.4rem 2rem;
+    }
+    
+    &.bordered {
+        @extend %bordered;
     }
 }

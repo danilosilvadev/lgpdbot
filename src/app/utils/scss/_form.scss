@@ -1,5 +1,16 @@
 .input,
 .select select,
+.textarea,
+.btn {
+    
+    &:disabled {
+        // cursor: not-allowed;
+        pointer-events: none;
+    }
+}
+
+.input,
+.select select,
 .textarea {
     background-color: $c-white;
     border: 0.1rem solid $c-gray-ccc;
@@ -67,6 +78,10 @@
     top: 0;
     width: 3rem;
     z-index: 4;
+
+    &.is-left {
+        left: 0;
+    }
 }
 
 .icon .fa {
@@ -75,7 +90,31 @@
     }
 }
 
-.select select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
+.select {
+    position: relative;
+
+    &::after {
+        border: 0.3rem solid $c-primary;
+        border: {
+            radius: 0.2rem;
+            right: 0;
+            top: 0;
+        };
+        content: "";
+        display: block;
+        height: 1rem;
+        margin-top: -.4375rem;
+        pointer-events: none;
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: rotate(-45deg);
+        width: 1rem;        
+        z-index: 4;
+    }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
 }
