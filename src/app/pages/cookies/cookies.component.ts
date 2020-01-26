@@ -13,9 +13,10 @@ import { TimeStampToDatePipe } from "../../utils/pipes/time-stamp-to-date.pipe";
 import { 
   faPen, 
   faTrash,
-  faChevronRight,
+  faCoffee,
   faList,
 } from '@fortawesome/free-solid-svg-icons';
+import { colors } from '../../utils'
 
 @Component({
   selector: "app-cookies",
@@ -35,8 +36,10 @@ export class CookiesComponent implements OnInit {
   createCookieComponent: CreateCookieComponent;
   faPen = faPen;
   faTrash = faTrash;
-  faChevronRight = faChevronRight;
+  faCoffee = faCoffee;
   faList = faList;
+  inputIconColor = colors.inputIconColor;
+  buttonIconColor = colors.buttonIconColor;
 
   constructor(
     private cookiesService: CookiesService,

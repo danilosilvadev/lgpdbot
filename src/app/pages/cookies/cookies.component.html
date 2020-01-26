@@ -10,36 +10,96 @@
         </select>
     </div>
     <span class="icon is-left">
-      <fa-icon [styles]="{'color': '#ccc'}" [icon]="faChevronRight" size="sm"></fa-icon>
+      <fa-icon [styles]="{'color': inputIconColor}" [icon]="faCoffee" size="sm"></fa-icon>
     </span>
 </div>
 
+<!-- <div class="control">
+  <label class="checkbox">
+    <input type="checkbox">
+    <span class="checkmark"></span>
+    <span class="checkLable">
+      Remember-me
+    </span>
+  </label>
+</div>
+
+<div class="control">
+  <label class="radio">
+    <input type="radio" name="remember">
+    <span class="radioCircle"></span>
+    <span class="radioLable">
+      Remember-me
+    </span>
+  </label>
+</div>
+<div class="control">
+  <label class="radio">
+    <input type="radio" name="remember" disabled="disabled" checked>
+    <span class="radioCircle"></span>
+    <span class="radioLable">
+      Remember-me
+    </span>
+  </label>
+</div>
+
+<div class="control">
+  <textarea class="textarea is-small" placeholder="Small textarea" spellcheck="false"></textarea>
+</div>
+
+<div class="buttons">
+  <button class="btn primary">
+    Btn primary
+  </button>
+  <button class="btn secondary">
+    Btn secondary
+  </button>
+
+  <button class="btn bordered primary">
+    Btn primary
+  </button>
+  <button class="btn bordered secondary">
+    Btn secondary
+  </button>
+
+  <button class="btnIcon small bordered primary">
+      <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
+  </button>
+  <button class="btnIcon small bordered secondary">
+      <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
+  </button>
+</div> -->
 
 
 <section *ngIf="group" class="m-bottom-4">
+  <button 
+    (click)="onOpenCookieForm()"
+    class="btn primary"
+  >
+    Adicione um cookie no grupo &nbsp;<b>{{ group.name }}</b>
+  </button>
   <ul>
-    <li *ngFor="let item of cookiesObservable | async">
+    <li class="flex alignCenter" *ngFor="let item of cookiesObservable | async">
       <span class="mr-2">{{ item.name }}</span>
-      <button 
-          (click)="onSelectCookie(item)"
-          class="btn bordered p-2"
-      >
-          <fa-icon [styles]="{'color': '#ccc'}" [icon]="faPen" size="sm"></fa-icon>
-      </button>
-      <button 
-          (click)="onDeleteCookie(item)"
-          class="btn bordered p-2"
-      >
-          <fa-icon [styles]="{'color': '#ccc'}" [icon]="faTrash" size="sm"></fa-icon>
-      </button>
+
+      <div class="buttons flex justifyEnd">
+          <button 
+            (click)="onSelectCookie(item)"
+            class="btn bordered p-2"
+        >
+            <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faPen" size="sm"></fa-icon>
+        </button>
+        <button 
+            (click)="onDeleteCookie(item)"
+            class="btn bordered p-2"
+        >
+            <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
+        </button>
+      </div>
+
     </li>
   </ul>
-  <button 
-      (click)="onOpenCookieForm()"
-      class="btn bordered p-2 secondary"
-  >
-    Adicione um cookie no grupo {{ group.name }}
-  </button>
+
 </section>
 
 <div>
@@ -76,7 +136,7 @@
                   class="btnIcon bordered small"
               >
                   <span class="">
-                    <fa-icon [styles]="{'color': '#ccc'}" [icon]="faPen" size="sm"></fa-icon>
+                    <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faPen" size="sm"></fa-icon>
                   </span>
               </button>
               <button 
@@ -84,7 +144,7 @@
                   class="btnIcon bordered small"
               >
                 <span class="">
-                  <fa-icon [styles]="{'color': '#ccc'}" [icon]="faTrash" size="sm"></fa-icon>
+                  <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
                 </span>
               </button>
               <button 
@@ -92,7 +152,7 @@
                   class="btnIcon bordered small"
               >
                 <span class="">
-                  <fa-icon [styles]="{'color': '#ccc'}" [icon]="faList" size="sm"></fa-icon>
+                  <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faList" size="sm"></fa-icon>
                 </span>
               </button>
           </div>

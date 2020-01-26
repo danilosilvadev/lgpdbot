@@ -2,7 +2,7 @@
 @import '../../utils/scss/mixins/index';
 
 .wrapper {
-    background-color: $c-white;
+    background-color: $cWhite;
     display: grid;
     grid-template-areas: "left left right right right right";
     grid-template-rows: 100vh;
@@ -18,7 +18,7 @@
 
 .right {
     background-image: url('../../../assets/loginBanner.jpg');
-    background-color: $c-secondary;
+    background-color: $cSecondary;
     background-position: center;
     background-size: cover;
     display: grid;
@@ -28,7 +28,7 @@
 
     .title, 
     .subtitle {
-        color: $c-white;
+        color: $cWhite;
             
     }
 }
@@ -46,8 +46,8 @@
 
 .googleSigninButton {
     align-items: center;
-    background-color: $c-white;
-    border: 0.1rem solid $c-gray-ccc;
+    background-color: $cWhite;
+    border: 0.1rem solid $cGrayCcc;
     border-radius: 0.3rem;
     display: flex;
     justify-content: center;
@@ -70,6 +70,6 @@
     display: flex;
 
     .button {
-        color: $c-primary;
+        color: $cPrimary;
     }
 }

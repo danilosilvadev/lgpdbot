@@ -3,7 +3,7 @@
     background-color: transparent;
     border: none;
     border-radius: 0.3rem;
-    color: $c-gray-333;
+    color: $cGray333;
     display: inline-flex;
     justify-content: center;
     transition: all .3s;
@@ -14,7 +14,27 @@
 }
 
 %bordered {
-    border: 0.1rem solid $c-gray-ccc;
+    background-color: transparent !important;
+    border: 0.1rem solid $cGrayCcc;
+}
+
+%borderedPrimary {
+    border-color: $cPrimary;
+    color: $cPrimary;
+}
+
+%borderedSecondary {
+    border-color: $cSecondary;
+    color: $cSecondary;
+}
+
+.buttons {
+    .btn,
+    .btnIcon {
+        &:not(:last-child){
+            margin-right: .5rem;
+        }
+    }
 }
 
 .btn,
@@ -27,44 +47,43 @@
     padding: 1.6rem 3.2rem;
 
     &.primary {
-        background-color: $c-primary;
-        color: $c-white;
+        background-color: $cPrimary;
+        color: $cWhite;
 
         &:hover {
-            background-color: darken($c-primary, 5%);
+            background-color: darken($cPrimary, 5%);
         }
     }
 
     &.secondary {
-        background-color: rgba($c-primary, 0.2);
-        color: darken($c-primary, 5%);
+        background-color: $cSecondary;
+        color: $cWhite;
 
         &:hover {
-            background-color: rgba($c-primary, 0.4);
+            background-color: darken($cSecondary, 5%);
         }
     }
 
     &.link {
-        color: $c-primary;
+        color: $cPrimary;
         padding: 0;
         width: auto;
     }
 
     &.bordered {
         @extend %bordered;
+
+        &.primary {
+            @extend %borderedPrimary;
+        }
+
+        &.secondary {
+            @extend %borderedSecondary;
+        }
     }
 
     &:disabled {
         opacity: .6;
-    }
-}
-
-.buttons {
-    .btn,
-    .btnIcon {
-        &:not(:last-child){
-            margin-right: .5rem;
-        }
     }
 }
 
@@ -83,5 +102,13 @@
     
     &.bordered {
         @extend %bordered;
+
+        &.primary {
+            @extend %borderedPrimary;
+        }
+
+        &.secondary {
+            @extend %borderedSecondary;
+        }
     }
 }

@@ -9,7 +9,7 @@
 }
 
 .addCookieButton {
-    background-color: $c-white;
+    background-color: $cWhite;
     display: flex;
     justify-content: space-between;
     padding: 1.2rem 1.6rem 1.2rem 3.2rem;
@@ -21,7 +21,7 @@
 
 .sidenav {
     a {
-        color: $c-gray-767;
+        color: $cGray767;
         display: inline-block;
         padding: 0.8rem 0;
     }
