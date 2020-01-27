@@ -22,7 +22,8 @@ body {
 
 button, 
 input[type="submit"],
-select {
+select,
+a {
     &:hover {
         cursor: pointer;
     }

@@ -71,6 +71,18 @@
 </div> -->
 
 
+<app-tabs>
+  <app-tab [tabTitle]="'Ativos'">
+    Ativos
+  </app-tab>
+  <app-tab tabTitle="Não cateogrizados">
+    Não cateogrizados
+  </app-tab>
+  <app-tab tabTitle="Inativos">
+    Conteúdo inativos
+  </app-tab>
+</app-tabs>
+
 <section *ngIf="group" class="m-bottom-4">
   <button 
     (click)="onOpenCookieForm()"
@@ -96,7 +108,6 @@
             <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
         </button>
       </div>
-
     </li>
   </ul>
 

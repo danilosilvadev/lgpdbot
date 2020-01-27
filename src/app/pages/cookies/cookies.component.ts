@@ -9,6 +9,7 @@ import { GroupService } from "../../services";
 import { Domain } from "../../models/domain.model";
 import { Group } from "../../models/group.model";
 import { CreateCookieComponent } from "../../components/forms/create-cookie/create-cookie.component";
+import { TabsComponent } from "../../components/tabs/tabs.component";
 import { TimeStampToDatePipe } from "../../utils/pipes/time-stamp-to-date.pipe";
 import { 
   faPen, 

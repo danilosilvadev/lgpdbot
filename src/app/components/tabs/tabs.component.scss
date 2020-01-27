@@ -1,0 +1,35 @@
+@import '../../utils/scss/index';
+
+.navTabs {
+    display: flex;
+    
+    &__item {
+        &.active {
+            .navTabs__link {
+                color: $cPrimary;
+            }
+        }
+    }
+
+    &__link {
+        color: $cGray757;
+        display: inline-flex;
+        font: {
+            size: 1.6rem;
+            weight: 500;
+        }
+        padding: 1rem;
+        // transition: all $transitionTime;
+
+        &:hover,
+        &:active {
+            color: $cPrimary;
+        }
+    }
+}
+
+.tab-close {
+    cursor: pointer;
+    color: gray;
+    text-align: right;
+}

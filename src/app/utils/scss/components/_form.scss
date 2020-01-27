@@ -91,27 +91,31 @@ $hasIconPaddingLeft: 4rem;
     }
 }
 
+%arrowDownPrimary {
+    border: 0.3rem solid $cPrimary;
+    border: {
+        radius: 0.2rem;
+        right: 0;
+        top: 0;
+    };
+    content: "";
+    display: block;
+    height: 1rem;
+    margin-top: -.4375rem;
+    pointer-events: none;
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: rotate(-45deg);
+    width: 1rem;        
+    z-index: 4;
+}
+
 .select {
     position: relative;
 
     &::after {
-        border: 0.3rem solid $cPrimary;
-        border: {
-            radius: 0.2rem;
-            right: 0;
-            top: 0;
-        };
-        content: "";
-        display: block;
-        height: 1rem;
-        margin-top: -.4375rem;
-        pointer-events: none;
-        position: absolute;
-        right: 1.5rem;
-        top: 50%;
-        transform: rotate(-45deg);
-        width: 1rem;        
-        z-index: 4;
+        @extend %arrowDownPrimary;
     }
 
     select {

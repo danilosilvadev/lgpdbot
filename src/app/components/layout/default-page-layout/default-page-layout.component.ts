@@ -31,6 +31,11 @@ export class DefaultPageLayoutComponent implements OnInit {
   iconColor = "#767d97"
   userStatusObservable: Observable<UserStatus>;
   userStatus;
+  domainMockList = [
+    {id: 123, name: 'Facebook'},
+    {id: 456, name: 'Google'},
+    {id: 786, name: 'Instagram'},
+  ]
   
   constructor(
     private store: Store<ReducersModel>,

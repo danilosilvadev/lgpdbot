@@ -4,9 +4,19 @@
 
         
         <div class="topNav">
-            <button class="changeDomainButton">
+            <!-- <button class="changeDomainButton">
                 Facebook <fa-icon [icon]="faChevronRight"></fa-icon>
-            </button>
+            </button> -->
+
+            <ng-select [items]="domainMockList" class="custom"
+                    bindLabel="name"
+                    autofocus
+                    bindValue="id"
+                    notFoundText="Nenhum domínio encontrado"
+                    [searchable]="false"
+                    [clearable]="false"
+                    >
+            </ng-select>
         </div>
         <div class="addCookie">
             <button class="addCookieButton">
@@ -26,25 +36,25 @@
 
             <ul class="sidenav">
                 <li>
-                    <a href="/">
+                    <a routerLink="/">
                         <fa-icon [styles]="{'color': iconColor}" [icon]="faHome" size="sm"></fa-icon> 
                         <span class="sidenav__item_label">Home</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard">
+                    <a routerLink="/dashboard">
                         <fa-icon [styles]="{'color': iconColor}" [icon]="faChartLine" size="sm"></fa-icon> 
                         <span class="sidenav__item_label">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/cookies">
+                    <a routerLink="/cookies">
                         <fa-icon [styles]="{'color': iconColor}" [icon]="faCookieBite" size="sm"></fa-icon> 
                         <span class="sidenav__item_label">Cookies</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a routerLink="#">
                         <fa-icon [styles]="{'color': iconColor}" [icon]="faMapSigns" size="sm"></fa-icon> 
                         <span class="sidenav__item_label">Data mapping</span>
                     </a>

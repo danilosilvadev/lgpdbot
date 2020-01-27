@@ -9,6 +9,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { AuthService } from "./services";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -28,6 +29,8 @@ import { DomainFormComponent } from './components/forms/domain-form/domain-form.
 import { TimeStampToDatePipe } from './utils/pipes/time-stamp-to-date.pipe';
 import { HeaderComponent } from './components/header/header.component';
 import { DefaultPageLayoutComponent } from './components/layout/default-page-layout/default-page-layout.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +48,9 @@ import { DefaultPageLayoutComponent } from './components/layout/default-page-lay
     DomainFormComponent,
     TimeStampToDatePipe,
     HeaderComponent,
-    DefaultPageLayoutComponent
+    DefaultPageLayoutComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,8 @@ import { DefaultPageLayoutComponent } from './components/layout/default-page-lay
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgSelectModule
   ],
   providers: [
     AngularFireModule,

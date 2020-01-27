@@ -1,5 +1,15 @@
 @import '../../../utils/scss/constants/colors';
 
+%defaultPadding {
+    padding: 3.2rem 0;
+}
+
+.topNav,
+.addCookie,
+.goToAccount {
+    @extend %defaultPadding;
+}
+
 .changeDomainButton {
     background-color: transparent;
     display: flex;
@@ -10,14 +20,13 @@
 
 .addCookieButton {
     background-color: $cWhite;
+    border-radius: 0.3rem;
     display: flex;
     justify-content: space-between;
-    padding: 1.2rem 1.6rem 1.2rem 3.2rem;
+    padding: 1rem 1.6rem 1rem 3.2rem;
     width: 22.4rem;
 }
-.goToAccount {
-    padding: 0.8rem;
-}
+
 
 .sidenav {
     a {
@@ -32,4 +41,8 @@
 }
 .footer {
     
+}
+
+.selectDomain {
+    width: 18rem;
 }
