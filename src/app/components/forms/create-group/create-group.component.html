@@ -1,6 +1,6 @@
 <form #groupForm="ngForm" (ngSubmit)="onSubmit()">
   <div class="field">
-      <input type="text" required [(ngModel)]="group.name" name="name" class="input mr-2" />
+      <input type="text" required [(ngModel)]="group.name" name="name" class="input mr2" />
       <input
           type="submit"
           [disabled]="!groupForm.form.valid"

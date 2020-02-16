@@ -4,7 +4,7 @@
         *ngIf="loginMode; else createAccountContainer"
         class="signinContainer"  
     >
-      <h1 class="title is-2 mb-10">Login</h1>
+      <h1 class="title is-2 mb10">Login</h1>
         <app-login-form (loginUser)="onLoginUser($event)"></app-login-form>
         
         <div class="signinOrContainer">
@@ -21,7 +21,7 @@
             </button>
         </div>
 
-        <div class="mt-10">
+        <div class="mt10">
             Ainda não tem conta?
             <button 
               (click)="toggleLogingMode()"
@@ -38,7 +38,7 @@
       ></app-create-acount-form>
 
       <div class="redirectToSigninContainer">
-        <span class="mr-1">Já tem uma conta?</span>
+        <span class="mr1">Já tem uma conta?</span>
         <button
             class="btn link" 
             (click)="toggleLogingMode()">
