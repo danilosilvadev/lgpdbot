@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   title = "ngrxFirestore";
   userStatusObservable: Observable<UserStatus>;
   userStatus;
+
   constructor(
     private store: Store<ReducersModel>,
     private userStatusService: UserStatusService

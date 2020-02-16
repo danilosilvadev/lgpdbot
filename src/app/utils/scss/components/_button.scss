@@ -1,0 +1,114 @@
+%btnCommon {
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.3rem;
+    color: $cGray333;
+    display: inline-flex;
+    justify-content: center;
+    transition: all .3s;
+
+    .icon {
+        position: static;
+    }
+}
+
+%bordered {
+    background-color: transparent !important;
+    border: 0.1rem solid $cGrayCcc;
+}
+
+%borderedPrimary {
+    border-color: $cPrimary;
+    color: $cPrimary;
+}
+
+%borderedSecondary {
+    border-color: $cSecondary;
+    color: $cSecondary;
+}
+
+.buttons {
+    .btn,
+    .btnIcon {
+        &:not(:last-child){
+            margin-right: .5rem;
+        }
+    }
+}
+
+.btn,
+.btnIcon {
+   @extend %btnCommon;
+}
+
+.btn {
+    @extend %btnCommon;
+    padding: 1.6rem 3.2rem;
+
+    &.primary {
+        background-color: $cPrimary;
+        color: $cWhite;
+
+        &:hover {
+            background-color: darken($cPrimary, 5%);
+        }
+    }
+
+    &.secondary {
+        background-color: $cSecondary;
+        color: $cWhite;
+
+        &:hover {
+            background-color: darken($cSecondary, 5%);
+        }
+    }
+
+    &.link {
+        color: $cPrimary;
+        padding: 0;
+        width: auto;
+    }
+
+    &.bordered {
+        @extend %bordered;
+
+        &.primary {
+            @extend %borderedPrimary;
+        }
+
+        &.secondary {
+            @extend %borderedSecondary;
+        }
+    }
+
+    &:disabled {
+        opacity: .6;
+    }
+}
+
+.btnIcon {
+    &.small {
+        padding: 0.6rem 1.2rem;
+    }
+
+    &.medium {
+        padding: 1rem 1.6rem;
+    }
+
+    &.large {
+        padding: 1.4rem 2rem;
+    }
+    
+    &.bordered {
+        @extend %bordered;
+
+        &.primary {
+            @extend %borderedPrimary;
+        }
+
+        &.secondary {
+            @extend %borderedSecondary;
+        }
+    }
+}

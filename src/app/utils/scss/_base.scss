@@ -1,0 +1,79 @@
+@import '~normalize.css';
+
+*, 
+*:before, 
+*:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    background-color: $cBgPrimary;
+    font-family: Roboto;
+}
+
+html {
+    font-size: 62.5%;  /* =10px */
+}
+
+
+body {
+    font-size: 1.4rem;
+}
+
+button, 
+input[type="submit"],
+select,
+a {
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: $cPrimary;
+    text-decoration: none;
+}
+
+svg {
+    color: $cPrimary;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+}
+
+button, 
+input, 
+select, 
+textarea {
+    margin: 0;
+}
+
+input,
+textarea {
+    &:focus {
+        outline: 0.1rem solid $cGrayAaa;
+        // outline-offset: 0;
+    }
+}
+
+input[type=submit]:disabled  {
+    pointer-events: none;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 5rem $cWhite inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: $cGray333;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 5rem $cWhite inset;/*your box-shadow*/
+    -webkit-text-fill-color: $cGray333;
+} 

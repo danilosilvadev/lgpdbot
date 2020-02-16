@@ -1,0 +1,75 @@
+@import '../../utils/scss/constants/colors';
+@import '../../utils/scss/mixins/index';
+
+.wrapper {
+    background-color: $cWhite;
+    display: grid;
+    grid-template-areas: "left left right right right right";
+    grid-template-rows: 100vh;
+}
+
+.left {
+    display: grid;
+    grid-area: left;
+    margin: 0 auto;
+    align-items: center;
+    width: 80%;
+}
+
+.right {
+    background-image: url('../../../assets/loginBanner.jpg');
+    background-color: $cSecondary;
+    background-position: center;
+    background-size: cover;
+    display: grid;
+    grid-area: right;
+    padding: 5.2rem;
+    align-items: end;
+
+    .title, 
+    .subtitle {
+        color: $cWhite;
+            
+    }
+}
+
+// .title {
+//     margin-bottom: 5rem;
+// }
+
+.headings {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 0.3rem;
+    padding: 1.6rem;
+    width: 60%;
+}
+
+.googleSigninButton {
+    align-items: center;
+    background-color: $cWhite;
+    border: 0.1rem solid $cGrayCcc;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    padding: 1.6rem 3.2rem;
+    height: 5rem;
+    width: 100%;
+
+
+}
+
+.signinOrContainer {
+    align-items: center;
+    display: flex;
+    height: 4rem;
+    justify-content: center;
+}
+
+.redirectToSigninContainer {
+    align-self: flex-start;
+    display: flex;
+
+    .button {
+        color: $cPrimary;
+    }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-
+import { faUser, faKey, faAt , faEnvelopeSquare } from '@fortawesome/free-solid-svg-icons';
 interface User {
   email: string;
   password: string;
@@ -18,6 +18,10 @@ export class CreateAcountFormComponent implements OnInit {
     name: ""
   };
   @Output() createUser = new EventEmitter();
+  faUser = faUser;
+  faKey = faKey;
+  faEnvelopeSquare = faEnvelopeSquare;
+  faAt = faAt
 
   onSubmit() {
     this.createUser.emit(this.user);

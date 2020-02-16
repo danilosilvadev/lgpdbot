@@ -1,0 +1,74 @@
+.grid {
+    display: grid;
+
+    /* 
+     *   Container 
+     */
+
+    &.justifyItemsStart {
+        justify-items: start;
+    }
+
+    &.justifyItemsEnd {
+        justify-items: end;
+    }
+
+    &.justifyItemsCenter {
+        justify-items: center;
+    }
+
+    &.justifyItemsStretch {
+        justify-items: stretch;
+    }
+
+    &.alignItemsStart {
+        align-items: start;
+    }
+
+    &.alignItemsEnd {
+        align-items: end;
+    }
+
+    &.alignItemsCenter {
+        align-items: center;
+    }
+
+    &.alignItemsStretch {
+        align-items: stretch;
+    }
+
+
+    /* Children */
+
+    &.justifySelfStart {
+        justify-self: start;
+    }
+
+    &.justifySelfEnd {
+        justify-self: end;
+    }
+
+    &.justifySelfCenter {
+        justify-self: center;
+    }
+
+    &.justifySelfStretch {
+        justify-self: stretch;
+    }
+
+    &.alignSelfStart {
+        align-self: start;
+    }
+
+    &.alignSelfEnd {
+        align-self: end;
+    }
+
+    &.alignSelfCenter {
+        align-self: center;
+    }
+
+    &.alignSelfStretch {
+        align-self: stretch;
+    }
+}

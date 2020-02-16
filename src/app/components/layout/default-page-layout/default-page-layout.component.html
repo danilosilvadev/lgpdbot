@@ -1,0 +1,73 @@
+<div class="pageWrapper">
+    
+    <div class="grid-container">
+
+        
+        <div class="topNav">
+            <!-- <button class="changeDomainButton">
+                Facebook <fa-icon [icon]="faChevronRight"></fa-icon>
+            </button> -->
+
+            <ng-select [items]="domainMockList" class="custom"
+                    bindLabel="name"
+                    autofocus
+                    bindValue="id"
+                    notFoundText="Nenhum domínio encontrado"
+                    [searchable]="false"
+                    [clearable]="false"
+                    >
+            </ng-select>
+        </div>
+        <div class="addCookie">
+            <button class="addCookieButton">
+
+                <span>Adicionar cookie</span>
+                <fa-icon [icon]="faPlus"></fa-icon>
+            </button>
+        </div>
+        <div class="goToAccount flex justifyEnd alignCenter">
+            <span>{{ userStatusObservable | async | depth: "name" }}</span>
+            <button class="accountButton">
+                <fa-icon [icon]="faUserCircle" size="lg"></fa-icon>
+            </button>
+        </div>
+
+        <aside class="aside">
+
+            <ul class="sidenav">
+                <li>
+                    <a routerLink="/">
+                        <fa-icon [styles]="{'color': iconColor}" [icon]="faHome" size="sm"></fa-icon> 
+                        <span class="sidenav__item_label">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/dashboard">
+                        <fa-icon [styles]="{'color': iconColor}" [icon]="faChartLine" size="sm"></fa-icon> 
+                        <span class="sidenav__item_label">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="/cookies">
+                        <fa-icon [styles]="{'color': iconColor}" [icon]="faCookieBite" size="sm"></fa-icon> 
+                        <span class="sidenav__item_label">Cookies</span>
+                    </a>
+                </li>
+                <li>
+                    <a routerLink="#">
+                        <fa-icon [styles]="{'color': iconColor}" [icon]="faMapSigns" size="sm"></fa-icon> 
+                        <span class="sidenav__item_label">Data mapping</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="main">
+            <router-outlet></router-outlet>
+        </main>
+        <footer class="footer flex justifyCenter">
+            &#x24B8; Akalli 2020
+        </footer>
+    </div>
+    
+    
+  </div>

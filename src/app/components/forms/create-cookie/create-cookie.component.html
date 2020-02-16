@@ -4,12 +4,13 @@
   (ngSubmit)="onSubmit()"
 >
   <div class="field">
-    <label class="label">Name</label>
-    <div class="control">
+    <label class="label" for="cookieName">Name</label>
+    <div class="field">
       <input
         class="input"
+        id="cookieName"
         type="text"
-        placeholder="Text input"
+        placeholder=""
         formControlName="name"
         #cookieName
       />
@@ -20,18 +21,19 @@
           createCookieForm.get('name').touched === true
         "
       >
-        Nome do cookie precisa ter pelo menos 3 caracteres
+        O nome do cookie precisa ter pelo menos 3 caracteres
       </span>
     </div>
   </div>
 
   <div class="field">
-    <label class="label">Provider</label>
-    <div class="control">
+    <label class="label" for="cookieProvider">Provider</label>
+    <div class="field">
       <input
         class="input"
+        id="cookieProvider"
         type="text"
-        placeholder="Text input"
+        placeholder=""
         formControlName="provider"
         #cookieProvider
       />
@@ -42,18 +44,19 @@
           createCookieForm.get('provider').touched === true
         "
       >
-        Provider do cookie precisa ter pelo menos 3 caracteres
+        O provider do cookie precisa ter pelo menos 3 caracteres
       </span>
     </div>
   </div>
 
   <div class="field">
-    <label class="label">Validade</label>
-    <div class="control">
+    <label class="label" for="cookieShelfLife">Validade</label>
+    <div class="field">
       <input
         class="input"
+        id="cookieShelfLife"
         type="date"
-        placeholder="Text input"
+        placeholder=""
         formControlName="expDate"
         [value]="expDate | date: 'dd-MM-yyyy'"
         #cookieExpDate
@@ -65,14 +68,19 @@
           createCookieForm.get('expDate').touched === true
         "
       >
-        Você precisa escolher uma data para expiração
+        Escolha uma data de expiração
       </span>
     </div>
   </div>
 
   <div class="field is-grouped">
-    <div class="control">
-      <input type="submit" [disabled]="!createCookieForm.valid" />
-    </div>
+      <div class="field">
+          <input 
+              type="submit" 
+              [disabled]="!createCookieForm.valid" 
+              value="Cadastrar" 
+              class="btn primary"
+          />
+      </div>
   </div>
 </form>
