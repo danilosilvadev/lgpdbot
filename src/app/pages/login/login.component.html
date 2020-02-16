@@ -1,13 +1,59 @@
-<section class="m-top-2">
-  <button (click)="googleSignup()">Signup with google</button>
-  <div *ngIf="loginMode; else createAccountContainer">
-    <app-login-form (loginUser)="onLoginUser($event)"></app-login-form>
-    <button (click)="toggleLogingMode()">Create account</button>
-  </div>
-  <ng-template #createAccountContainer>
-    <app-create-acount-form
-      (createUser)="onCreateUser($event)"
-    ></app-create-acount-form>
-    <button (click)="toggleLogingMode()">Login</button>
-  </ng-template>
-</section>
+<div class="wrapper">
+  <section class="left">
+    <div 
+        *ngIf="loginMode; else createAccountContainer"
+        class="signinContainer"  
+    >
+      <h1 class="title is-2 mb10">Login</h1>
+        <app-login-form (loginUser)="onLoginUser($event)"></app-login-form>
+        
+        <div class="signinOrContainer">
+          <span class="signinOr" >Ou</span>
+        </div>
+
+        <div class="googleSigninContainer">
+            <button class="btn bordered w-100" (click)="googleSignup()">
+              <span class="icon">
+                <fa-icon [icon]="faGoogle" size="lg"  [styles]="{'color': '#ccc'}"></fa-icon>
+              </span>
+              
+              <span class="btn-label">Logar com Google</span>
+            </button>
+        </div>
+
+        <div class="mt10">
+            Ainda não tem conta?
+            <button 
+              (click)="toggleLogingMode()"
+              class="createAccountButton btn link"
+            >
+              Criar uma
+            </button>
+        </div>
+    </div>
+    
+    <ng-template #createAccountContainer>
+      <app-create-acount-form
+        (createUser)="onCreateUser($event)"
+      ></app-create-acount-form>
+
+      <div class="redirectToSigninContainer">
+        <span class="mr1">Já tem uma conta?</span>
+        <button
+            class="btn link" 
+            (click)="toggleLogingMode()">
+            Login
+        </button>
+      </div>
+    </ng-template>
+
+  </section>
+
+  <section class="right">
+      <div class="headings">
+          <h2 class="title is-3"> LGPD Bot</h2>
+          <p class="subtitle is-4">A melhor forma de gerenciar cookies</p>
+      </div>
+  </section>
+  
+</div>

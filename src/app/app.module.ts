@@ -8,6 +8,8 @@ import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AuthService } from "./services";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -25,6 +27,10 @@ import { CreateCookieComponent } from "./components/forms/create-cookie/create-c
 import { CreateGroupComponent } from './components/forms/create-group/create-group.component';
 import { DomainFormComponent } from './components/forms/domain-form/domain-form.component';
 import { TimeStampToDatePipe } from './utils/pipes/time-stamp-to-date.pipe';
+import { HeaderComponent } from './components/header/header.component';
+import { DefaultPageLayoutComponent } from './components/layout/default-page-layout/default-page-layout.component';
+import { TabsComponent } from './components/tabs/tabs.component';
+import { TabComponent } from './components/tab/tab.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +46,11 @@ import { TimeStampToDatePipe } from './utils/pipes/time-stamp-to-date.pipe';
     CreateCookieComponent,
     CreateGroupComponent,
     DomainFormComponent,
-    TimeStampToDatePipe
+    TimeStampToDatePipe,
+    HeaderComponent,
+    DefaultPageLayoutComponent,
+    TabsComponent,
+    TabComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +63,9 @@ import { TimeStampToDatePipe } from './utils/pipes/time-stamp-to-date.pipe';
       logOnly: environment.production // Restrict extension to log-only mode
     }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FontAwesomeModule,
+    NgSelectModule
   ],
   providers: [
     AngularFireModule,

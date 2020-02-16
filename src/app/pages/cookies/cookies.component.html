@@ -1,51 +1,173 @@
-<select>
-  <option
-    value="domain_1"
-    *ngFor="let domain of domains"
-    [value]="domain.did"
-    >{{ domain.name }}</option
-  >
-</select>
+<div class="control has-icon-left">
+    <div class="select">
+        <select class="py-2">  
+            <option
+              value="domain_1"
+              *ngFor="let domain of domains"
+              [value]="domain.did"
+              >{{ domain.name }}</option
+            >
+        </select>
+    </div>
+    <span class="icon is-left">
+      <fa-icon [styles]="{'color': inputIconColor}" [icon]="faCoffee" size="sm"></fa-icon>
+    </span>
+</div>
+
+<!-- <div class="control">
+  <label class="checkbox">
+    <input type="checkbox">
+    <span class="checkmark"></span>
+    <span class="checkLable">
+      Remember-me
+    </span>
+  </label>
+</div>
+
+<div class="control">
+  <label class="radio">
+    <input type="radio" name="remember">
+    <span class="radioCircle"></span>
+    <span class="radioLable">
+      Remember-me
+    </span>
+  </label>
+</div>
+<div class="control">
+  <label class="radio">
+    <input type="radio" name="remember" disabled="disabled" checked>
+    <span class="radioCircle"></span>
+    <span class="radioLable">
+      Remember-me
+    </span>
+  </label>
+</div>
+
+<div class="control">
+  <textarea class="textarea is-small" placeholder="Small textarea" spellcheck="false"></textarea>
+</div>
+
+<div class="buttons">
+  <button class="btn primary">
+    Btn primary
+  </button>
+  <button class="btn secondary">
+    Btn secondary
+  </button>
+
+  <button class="btn bordered primary">
+    Btn primary
+  </button>
+  <button class="btn bordered secondary">
+    Btn secondary
+  </button>
+
+  <button class="btnIcon small bordered primary">
+      <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
+  </button>
+  <button class="btnIcon small bordered secondary">
+      <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
+  </button>
+</div> -->
+
+
+<app-tabs>
+  <app-tab [tabTitle]="'Ativos'">
+    Ativos
+  </app-tab>
+  <app-tab tabTitle="Não cateogrizados">
+    Não cateogrizados
+  </app-tab>
+  <app-tab tabTitle="Inativos">
+    Conteúdo inativos
+  </app-tab>
+</app-tabs>
+
 <section *ngIf="group" class="m-bottom-4">
+  <button 
+    (click)="onOpenCookieForm()"
+    class="btn primary"
+  >
+    Adicione um cookie no grupo &nbsp;<b>{{ group.name }}</b>
+  </button>
   <ul>
-    <li *ngFor="let item of cookiesObservable | async">
-      <span>{{ item.name }}</span>
-      <button (click)="onSelectCookie(item)">
-        Edit
-      </button>
-      <button (click)="onDeleteCookie(item)">
-        Delete
-      </button>
+    <li class="flex alignCenter" *ngFor="let item of cookiesObservable | async">
+      <span class="mr2">{{ item.name }}</span>
+
+      <div class="buttons flex justifyEnd">
+          <button 
+            (click)="onSelectCookie(item)"
+            class="btn bordered p-2"
+        >
+            <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faPen" size="sm"></fa-icon>
+        </button>
+        <button 
+            (click)="onDeleteCookie(item)"
+            class="btn bordered p-2"
+        >
+            <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
+        </button>
+      </div>
     </li>
   </ul>
-  <button (click)="onOpenCookieForm()">
-    Add a cookie at {{ group.name }} group
-  </button>
+
 </section>
+
 <div>
   <app-create-group
     (registerGroup)="onRegisterGroup($event)"
   ></app-create-group>
 </div>
+
 <app-create-cookie
-  [hidden]="!activeCookieForm"
-  #createCookieForm
-  (registerCookie)="onRegisterCookie($event)"
-  (updateCookie)="onUpdateCookie($event)"
+    [hidden]="!activeCookieForm"
+    #createCookieForm
+    (registerCookie)="onRegisterCookie($event)"
+    (updateCookie)="onUpdateCookie($event)"
 ></app-create-cookie>
+
 {{ groupObservable | async | json }}
-<ul>
-  <li *ngFor="let item of groupObservable | async" key="item.id">
-    {{ item.name }}
-    <input type="text" #groupName />
-    <button (click)="onUpdateGroup(groupName, item)">
-      update
-    </button>
-    <button (click)="onDeleteGroup(item)">
-      Delete
-    </button>
-    <button (click)="onSelectGroup(item)">
-      Show cookies
-    </button>
-  </li>
-</ul>
+<div>
+    <ul 
+        *ngFor="let item of groupObservable | async" 
+        key="item.id"
+        class="cards"
+    >
+      <li class="card">
+          <header class="flex">
+              <h3 class="groupName">
+                {{ item.name }}
+              </h3>
+              <input type="text" #groupName class="input" />
+          </header>
+        
+          <div class="buttons flex justifyEnd">
+              <button 
+                  (click)="onUpdateGroup(groupName, item)"
+                  class="btnIcon bordered small"
+              >
+                  <span class="">
+                    <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faPen" size="sm"></fa-icon>
+                  </span>
+              </button>
+              <button 
+                  (click)="onDeleteGroup(item)"
+                  class="btnIcon bordered small"
+              >
+                <span class="">
+                  <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faTrash" size="sm"></fa-icon>
+                </span>
+              </button>
+              <button 
+                  (click)="onSelectGroup(item)"
+                  class="btnIcon bordered small"
+              >
+                <span class="">
+                  <fa-icon [styles]="{'color': buttonIconColor}" [icon]="faList" size="sm"></fa-icon>
+                </span>
+              </button>
+          </div>
+      </li>
+    </ul>
+</div>
+

@@ -1,13 +1,66 @@
 <form
   #createAccountForm="ngForm"
   (ngSubmit)="onSubmit()"
-  class="f f-column w-30"
+  class="createAccountForm mt10"
 >
-  <label>E-mail</label>
-  <input type="e-mail" required [(ngModel)]="user.email" name="email" />
-  <label>Senha</label>
-  <input type="password" required [(ngModel)]="user.password" name="password" />
-  <label>Nome</label>
-  <input type="text" name="user-name" required [(ngModel)]="user.name" />
-  <input type="submit" [disabled]="!createAccountForm.form.valid" />
+    <h1 class="title is-2 mb10">Criar conta</h1>
+    <div class="field">
+        <div class="control has-icon-left">
+            <span class="icon">
+                <fa-icon [styles]="{'color': '#ccc'}" [icon]="faAt" size="sm"></fa-icon>
+            </span>
+            <input 
+              type="e-mail" 
+              class="input" 
+              required 
+              [(ngModel)]="user.email" 
+              name="email" 
+              placeholder="E-mail" 
+            />
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control has-icon-left">
+            <span class="icon">
+              <fa-icon [styles]="{'color': '#ccc'}" [icon]="faUser" size="sm"></fa-icon>
+            </span>
+            <input 
+                type="text" 
+                class="input"
+                name="user-name" 
+                required 
+                [(ngModel)]="user.name" 
+                placeholder="Usuário"
+            />
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="control has-icon-left">
+            <span class="icon">
+                <fa-icon [styles]="{'color': '#ccc'}" [icon]="faKey" size="sm"></fa-icon>
+            </span>
+            <input 
+                type="password" 
+                class="input"
+                required 
+                [(ngModel)]="user.password" 
+                name="password" 
+                placeholder="Senha"
+            />
+        </div>
+    </div>
+
+    <div class="field">
+        <input 
+            type="submit" 
+            [disabled]="!createAccountForm.form.valid"
+            ng-class="{'disabled': !createAccountForm.form.valid}"
+            class="btn primary w-100"
+            value="Cadastrar"
+        />
+    </div>
+
+
 </form>

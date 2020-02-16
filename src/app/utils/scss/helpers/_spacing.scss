@@ -1,0 +1,102 @@
+/*
+  @author: tiagosatur
+  @github: @tiagosatur
+
+  This file generates margins and paddings helper classes according to
+  defined breakpoints.
+
+  I. e.:
+
+  .m1 {
+    margin: 0.5rem !important;
+  }
+
+  .mb4 {
+    margin-bottom: 2rem !important;
+  }
+
+  .mtmd2 {
+     margin-top: 1rem !important;
+   }
+
+  .p7 {
+    padding: 3.5rem !important;
+  }
+
+  .pt7 {
+    padding-top: 3.5rem !important;
+  }
+
+  .pl14 {
+    padding-left: 7rem !important;
+  }
+  .pyxl16 {
+    padding: 8rem 0 !important;
+  }
+
+*/
+
+
+@each $breakpoint, $value in ($grid-breakpoints) {
+  $spacing: 0.5;
+
+  @if($value == 0) {
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @for $i from 0 through 16 {
+
+        .#{$abbrev}-#{$i} {
+          #{$prop}: #{$i * $spacing}rem !important;
+        }
+
+        @each $side, $sideAbbrev in (top: t, bottom: b, left: l, right: r, x: x, y: y) {
+          @if($side == x) {
+            .#{$abbrev}#{$sideAbbrev}#{$i} {
+              #{$prop}: 0 #{$i * $spacing}rem !important;
+            }
+          } @else if($side == y) {
+            .#{$abbrev}#{$sideAbbrev}#{$i} {
+              #{$prop}: #{$i * $spacing}rem 0 !important;
+            }
+          } @else {
+            .#{$abbrev}#{$sideAbbrev}#{$i} {
+              #{$prop}-#{$side}: #{$i * $spacing}rem !important;
+            }
+          }
+
+        }
+      }
+    }
+
+  } @else {
+
+    @media(min-width: $value) {
+      @each $prop, $abbrev in (margin: m, padding: p) {
+        @for $i from 0 through 16 {
+
+          .#{$abbrev}#{$breakpoint}-#{$i} {
+            #{$prop}: #{$i * $spacing}rem !important;
+          }
+
+
+          @each $side, $sideAbbrev in (top: t, bottom: b, left: l, right: r, x: x, y: y) {
+            @if($side == x) {
+              .#{$abbrev}#{$sideAbbrev}#{$breakpoint}#{$i} {
+                #{$prop}: 0 #{$i * $spacing}rem !important;
+              }
+            } @else if($side == y) {
+              .#{$abbrev}#{$sideAbbrev}#{$breakpoint}#{$i} {
+                #{$prop}: #{$i * $spacing}rem 0 !important;
+              }
+            } @else {
+              .#{$abbrev}#{$sideAbbrev}#{$breakpoint}#{$i} {
+                #{#{$prop}}-#{$side}: #{$i * $spacing}rem !important;
+              }
+            }
+          }
+
+        }
+
+      }
+    }
+  }
+}

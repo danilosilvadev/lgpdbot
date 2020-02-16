@@ -9,7 +9,15 @@ import { GroupService } from "../../services";
 import { Domain } from "../../models/domain.model";
 import { Group } from "../../models/group.model";
 import { CreateCookieComponent } from "../../components/forms/create-cookie/create-cookie.component";
+import { TabsComponent } from "../../components/tabs/tabs.component";
 import { TimeStampToDatePipe } from "../../utils/pipes/time-stamp-to-date.pipe";
+import { 
+  faPen, 
+  faTrash,
+  faCoffee,
+  faList,
+} from '@fortawesome/free-solid-svg-icons';
+import { colors } from '../../utils'
 
 @Component({
   selector: "app-cookies",
@@ -27,6 +35,12 @@ export class CookiesComponent implements OnInit {
   activeCookieForm: boolean;
   @ViewChild(CreateCookieComponent, { static: false })
   createCookieComponent: CreateCookieComponent;
+  faPen = faPen;
+  faTrash = faTrash;
+  faCoffee = faCoffee;
+  faList = faList;
+  inputIconColor = colors.inputIconColor;
+  buttonIconColor = colors.buttonIconColor;
 
   constructor(
     private cookiesService: CookiesService,
@@ -40,7 +54,9 @@ export class CookiesComponent implements OnInit {
       this.domains = data.domains;
       this.domain = data.domains[0];
       this.onFetchGroups(data.domains[0]);
+      console.log('data.domains[0]',data.domains[0] );
     });
+    
   }
 
   onSelectCookie(cookie) {

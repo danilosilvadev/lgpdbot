@@ -1,0 +1,48 @@
+@import '../../../utils/scss/constants/colors';
+
+%defaultPadding {
+    padding: 3.2rem 0;
+}
+
+.topNav,
+.addCookie,
+.goToAccount {
+    @extend %defaultPadding;
+}
+
+.changeDomainButton {
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 1.6rem 1.2rem 0;
+    width: 100%;
+}
+
+.addCookieButton {
+    background-color: $cWhite;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.6rem 1rem 3.2rem;
+    width: 22.4rem;
+}
+
+
+.sidenav {
+    a {
+        color: $cGray767;
+        display: inline-block;
+        padding: 0.8rem 0;
+    }
+    &__item_label {
+        display: inline-block;
+        margin-left: 0.8rem;
+    }
+}
+.footer {
+    
+}
+
+.selectDomain {
+    width: 18rem;
+}

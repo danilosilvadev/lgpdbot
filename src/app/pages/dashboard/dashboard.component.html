@@ -1,8 +1,19 @@
-<p>dashboard works!</p>
-<button (click)="logoutUser()">Logout</button>
-<button
-  *ngIf="!(userStatusObservable | async | json | depth: 'isVerified')"
-  (click)="resendEmail()"
->
-  Re-envie o e-mail de verificação.
-</button>
+<h1 class="title is-1">Dashboard</h1>
+
+<div class="flex">
+    <button 
+        (click)="logoutUser()"
+        class="btn primary mr2"
+    >
+        Logout
+    </button>
+
+    <button
+        *ngIf="!(userStatusObservable | async | json | depth: 'isVerified')"
+        (click)="resendEmail()"
+        class="btn primary"
+    >
+        Re-envie o e-mail de verificação.
+    </button>
+
+</div>

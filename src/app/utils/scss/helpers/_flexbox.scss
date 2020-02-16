@@ -1,0 +1,111 @@
+
+/*
+    Justify and alignment classes
+
+    Usage:
+    .justifyCenter
+    .alignEnd
+    .alignSelfSpaceBetweenLg
+*/
+
+@each $breakpoint, $breakpoint-value in ($grid-breakpoints) {
+
+  @if($breakpoint-value == 0) {
+    @each $style-prop, $abbrev in (justify-content: justify, align-items: align, align-self: alignSelf) {
+
+      @each $style-value, $nestedAbbrev in (start: Start, flex-end: End, center: Center, space-between: SpaceBetween, space-around: SpaceAround, baseline: Baseline, stretch: Stretch) {
+        .#{$abbrev}#{$nestedAbbrev} {
+          #{$style-prop}: $style-value !important;
+        }
+      }
+    }
+
+  } @else {
+
+    @media(min-width: $breakpoint-value) {
+
+      @each $style-prop, $abbrev in (justify-content: justifyContent, align-items: alignItems, align-self: alignSelf) {
+
+        @each $style-value, $nestedAbbrev in (start: Start, end: End, center: Center, space-between: SpaceBetween, space-around: SpaceAround, baseline: Baseline, stretch: Stretch) {
+          .#{$abbrev}#{$nestedAbbrev}#{$breakpoint} {
+            #{$style-prop}: $style-value !important;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/*
+    Flex direction classes
+
+    Usage:
+    .flexDirectionRow
+    .flexDirectionColumnMd
+*/
+
+@each $breakpoint, $breakpoint-value in ($grid-breakpoints) {
+
+  @if($breakpoint-value == 0) {
+    @each $style-prop, $abbrev in (flex-direction: flexDirection) {
+
+      @each $style-value, $valueAbbrev in (column: Column, row: Row, column-reverse: ColumnReverse, row-reverse: RowReverse, inherit: Inherit, initial: Initial, unset: Unset) {
+        .#{$abbrev}#{$valueAbbrev} {
+          #{$style-prop}: $style-value !important;
+        }
+      }
+    }
+
+  } @else {
+
+    @media(min-width: $breakpoint-value) {
+
+      @each $style-prop, $abbrev in (flex-direction: flexDirection) {
+
+        @each $style-value, $valueAbbrev in (column: Column, row: Row, column-reverse: ColumnReverse, row-reverse: RowReverse, inherit: Inherit, initial: Initial, unset: Unset) {
+          .#{$abbrev}#{$valueAbbrev}#{$breakpoint} {
+            #{$style-prop}: $style-value !important;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/*
+    Flex-wrap classes
+
+    Usage:
+    .flexWrap
+    .flexWrapReverseSm
+*/
+
+@each $breakpoint, $value in ($grid-breakpoints) {
+
+  @if($value == 0) {
+    @each $style-prop, $abbrev in (flex-wrap: flex) {
+
+      @each $style-value, $valueAbbrev in (wrap: Wrap, wrap-reverse: WrapReverse, nowrap: NoWrap, initial: Initial, inherit: Inherit) {
+        .#{$abbrev}#{$valueAbbrev} {
+          #{$style-prop}: $style-value !important;
+        }
+      }
+    }
+
+  } @else {
+
+    @media(min-width: $value) {
+
+      @each $style-prop, $abbrev in (flex-wrap: flex) {
+
+        @each $style-value, $valueAbbrev in (wrap: Wrap, wrap-reverse: WrapReverse, nowrap: NoWrap, initial: Initial, inherit: Inherit) {
+          .#{$abbrev}#{$valueAbbrev}#{$breakpoint} {
+            #{$style-prop}: $style-value !important;
+          }
+        }
+      }
+    }
+  }
+}

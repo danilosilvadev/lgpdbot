@@ -1,0 +1,38 @@
+/*
+    @author: tiagosatur
+    @github: @tiagosatur
+
+  This file generates display and flexblox utility classes according to
+  defined breakpoints.
+
+  Usage:
+    .dNone
+    .dBlockLg
+
+*/
+
+@each $breakpoint, $breakpoint-value in ($grid-breakpoints) {
+
+    @if($breakpoint-value == 0) {
+  
+      @each $display-value, $abbrev in (block: Block, inline-block: InlineBlock, flex: Flex, inline-flex: InlineFlex, table: Table, inline-table: InlineTable, none: None) {
+        .d#{$abbrev} {
+          display: #{$display-value} !important;
+        }
+      }
+  
+    } @else {
+  
+      @media(min-width: $breakpoint-value) {
+  
+        @each $display-value, $abbrev in (block: Block, inline-block: InlineBlock, flex: Flex, inline-flex: InlineFlex, table: Table, inline-table: InlineTable, none: None) {
+  
+          .d#{$abbrev}#{$breakpoint} {
+            display: #{$display-value} !important;
+          }
+  
+        }
+      }
+    }
+  
+  }

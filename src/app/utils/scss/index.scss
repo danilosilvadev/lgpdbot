@@ -1,5 +1,9 @@
-@import "constants";
-@import "spacing";
-@import "flexbox/index";
-@import "snippets/index";
-@import "directives/index";
+@import "constants/index";
+
+@import 'mixins/index';
+@import "base";
+@import "grid";
+@import 'components/index';
+@import 'helpers/index';
+
+@import 'thirdParty/index';

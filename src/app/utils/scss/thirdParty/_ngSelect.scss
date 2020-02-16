@@ -1,0 +1,20 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+.ng-select {
+    &.custom {
+        width: 20rem;
+
+        &:after {
+            @extend %arrowDownPrimary;
+            top: 44%;
+            z-index: 9999;
+        }
+
+        .ng-select-container {
+            border-radius: 0.3rem;
+        }
+        .ng-arrow-wrapper {
+            opacity: 0;
+        }
+    }
+}

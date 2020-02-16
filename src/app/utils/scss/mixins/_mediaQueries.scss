@@ -1,0 +1,17 @@
+@mixin mediaLaptop() {
+    @media(min-width: 96rem) {
+        @content;
+    }
+}
+
+@mixin mediaDesktop() {
+    @media(min-width: 128rem) {
+        @content;
+    }
+}
+
+@mixin mediaWide() {
+    @media(min-width: 192rem) {
+        @content;
+    }
+}
